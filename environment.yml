@@ -1,0 +1,28 @@
+name: Projeto_Jarvis
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  # --- Versão do Python ---
+  - python=3.10
+
+  # --- Pacotes Conda ---
+  # Dependências de sistema para áudio, mais confiável via Conda
+  - pyaudio
+
+  # Bibliotecas principais do projeto
+  - scikit-learn
+  - flask
+  - requests
+  - python-dotenv
+  - pytest
+  - huggingface-hub
+
+  # --- Pacotes Pip ---
+  # Adiciona o pip para instalar pacotes que não estão no Conda
+  - pip
+  - pip:
+    - pyttsx3
+    - SpeechRecognition

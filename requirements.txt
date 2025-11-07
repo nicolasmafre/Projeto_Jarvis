@@ -1,0 +1,9 @@
+python-dotenv
+requests
+scikit-learn
+Flask
+pyttsx3
+SpeechRecognition
+PyAudio
+pytest
+huggingface-hub
