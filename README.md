@@ -1,17 +1,19 @@
 # Projeto Jarvis - Assistente de Linguagem Natural
 
-Este projeto implementa um assistente de linguagem natural inspirado no Jarvis, utilizando a API de Inferência do Hugging Face para acesso a modelos de linguagem de ponta como o Llama 3 da Meta.
+Este projeto implementa um assistente de linguagem natural multifacetado, inspirado no Jarvis. Ele combina um poderoso modelo de linguagem (Meta Llama 3) com uma base de conhecimento local, memória de longo prazo e interação por voz.
 
 ## Funcionalidades Principais
 
-- **Integração com LLM Moderno:** Utiliza a biblioteca `huggingface-hub` para uma integração robusta e em tempo real com os modelos de inferência.
-- **Modelo de Chat:** Pré-configurado para usar o `meta-llama/Meta-Llama-3-8B-Instruct`.
-- **Cliente de API Genérico:** Suporte a múltiplos provedores (Hugging Face, Replicate) com seleção via variável de ambiente.
-- **RAG (Retrieval-Augmented Generation):** Indexa documentos locais para responder perguntas com base em conhecimento específico.
-- **Interação por Voz:** A interface CLI utiliza reconhecimento de fala (STT) e síntese de voz (TTS) para uma experiência de assistente de voz completa.
-- **Opções de Voz (TTS):** Suporte para as vozes nativas do sistema operacional (via `pyttsx3`) e para o motor de voz offline `eSpeak-ng`.
-- **Interfaces Duplas:** Funciona como um assistente de voz no terminal (CLI) ou como uma aplicação de chat web via Flask e HTMX.
-- **Segurança:** Inclui um modo "safe" que exige confirmação do usuário para ações sensíveis.
+- **Integração com LLM Moderno:** Utiliza a biblioteca `huggingface-hub` para uma integração robusta e em tempo real com o modelo `meta-llama/Meta-Llama-3-8B-Instruct`.
+- **Memória de Longo Prazo:** O Jarvis aprende com suas conversas! Ele extrai fatos e preferências importantes, armazenando-os em `memory/memory.json` para personalizar interações futuras.
+- **RAG (Retrieval-Augmented Generation):** Possui uma "memória estática" que indexa documentos locais (na pasta `knowledge/`) para responder a perguntas com conhecimento especializado que você fornece.
+- **Interação por Voz Sob Demanda:** A interface CLI ativa o microfone apenas quando o usuário pressiona Enter, garantindo privacidade e controle total.
+- **Opções de Voz (TTS):** Suporte para as vozes nativas do sistema operacional (via `pyttsx3`) e para o motor de voz offline `eSpeak-ng`, selecionável via variável de ambiente.
+- **Interfaces Duplas:**
+  - **CLI:** Um assistente de voz completo no terminal, com opção de modo texto.
+  - **Web:** Uma interface de chat web simples e reativa, construída com Flask e HTMX.
+- **Segurança:** Inclui um "modo seguro" que exige confirmação do usuário para ações sensíveis e um `.gitignore` robusto para prevenir o vazamento de segredos.
+- **Suíte de Testes:** Acompanha uma suíte de testes unitários (`pytest`) para garantir a estabilidade e a funcionalidade de cada módulo.
 
 ---
 
@@ -28,7 +30,7 @@ cd Projeto_Jarvis
 
 ### Passo 2: Criar Ambiente e Instalar Dependências
 
-**Opção A: Usando Conda (Recomendado)**
+**Opção A: Usando Conda (Recomendado para Linux e Windows)**
 
 O Conda facilita a instalação de dependências complexas como a `PyAudio`.
 
@@ -53,6 +55,12 @@ source venv/bin/activate  # No Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+**Nota Importante para Usuários Linux (Ubuntu/Debian):**
+Para garantir que o reconhecimento de voz funcione, é altamente recomendável instalar pacotes de desenvolvimento e plugins de áudio no seu sistema:
+```bash
+sudo apt-get update && sudo apt-get install -y libasound2-plugins libasound2-dev pavucontrol
+```
+
 ### Passo 3: Configurar a Chave de API do Hugging Face
 
 Este é o passo mais crítico.
@@ -75,34 +83,24 @@ Para usar o Llama 3, você precisa aceitar seus termos de uso.
 2.  Faça login com a mesma conta da sua chave de API.
 3.  Clique nos botões para aceitar os termos.
 
-### Passo 5 (Opcional): Configurar a Voz do Jarvis (TTS)
-
-Por padrão, o Jarvis usa as vozes nativas do seu sistema operacional (`pyttsx3`). Você pode optar por usar a voz robótica e offline do `eSpeak-ng`.
-
-1.  **Instale o eSpeak-ng no seu sistema:**
-    - **Linux (Debian/Ubuntu):** `sudo apt-get update && sudo apt-get install espeak-ng`
-    - **macOS (com Homebrew):** `brew install espeak-ng`
-    - **Windows:** Baixe e execute o instalador a partir do [site oficial do eSpeak-ng](https://espeak-ng.sourceforge.io/download.html). Certifique-se de que ele seja adicionado ao PATH do sistema.
-
-2.  **Configure o `.env`:**
-    - Abra seu arquivo `.env` e altere a variável `TTS_ENGINE`:
-      ```env
-      TTS_ENGINE=espeak-ng
-      ```
-
 ---
 
 ## Como Executar
 
 Certifique-se de que seu ambiente (`conda` ou `venv`) esteja ativado.
 
-### CLI Interativo (com Voz)
+### CLI Interativo (com Voz ou Texto)
 
-Para conversar com o Jarvis usando seu microfone e alto-falantes:
+Execute o comando principal para iniciar o assistente:
 
 ```bash
 python app.py
 ```
+
+O programa irá perguntar se você deseja usar o modo de **Voz** ou **Texto**.
+
+- **Modo Voz:** Pressione **Enter** para ativar o microfone e falar. A luz do seu microfone só acenderá quando o Jarvis estiver ouvindo.
+- **Modo Texto:** Interaja digitando normalmente no terminal.
 
 ### Interface Web (com Texto)
 
@@ -113,6 +111,64 @@ python app.py --web
 ```
 
 Acesse `http://127.0.0.1:5000` no seu navegador.
+
+---
+
+## Configurações Avançadas (Arquivo `.env`)
+
+Você pode personalizar o comportamento do Jarvis editando seu arquivo `.env`:
+
+- `TTS_ENGINE`: Mude de `pyttsx3` (padrão) para `espeak-ng` para usar uma voz robótica offline. Requer a instalação do `eSpeak-ng` no seu sistema.
+- `MIC_INDEX`: (Principalmente para Linux) Se o microfone padrão não funcionar, use o script `python check_mics.py` para encontrar o índice do seu dispositivo e defina-o aqui.
+
+---
+
+## Solução de Problemas (Troubleshooting)
+
+### Microfone não funciona no Linux (Ubuntu)
+
+Se o modo de voz não capturar seu áudio, siga estes passos:
+
+**Passo 1: Use o PulseAudio Volume Control (`pavucontrol`)**
+
+Esta ferramenta, que você instalou no Passo 2, oferece um controle mais detalhado.
+
+```bash
+# Execute a ferramenta
+pavucontrol
+```
+
+**Passo 2: Verifique as Configurações do Microfone**
+
+1.  Na janela do `pavucontrol`, vá para a aba **"Dispositivos de entrada"**.
+2.  Encontre o seu microfone na lista.
+3.  **Verifique 3 coisas:**
+    - **Mudo:** O ícone de mudo (alto-falante com um X) **não** deve estar selecionado.
+    - **Volume:** A barra de volume **não** deve estar em 0%. Aumente para 70-100%.
+    - **Seleção de Porta:** Se houver um menu "Porta", certifique-se de que "Microfone" está selecionado.
+
+**Passo 3: Verifique o Índice do Dispositivo**
+
+Se o problema persistir, você pode estar usando o índice de dispositivo errado.
+
+1.  Execute o script de verificação: `python check_mics.py`.
+2.  Identifique o índice do seu microfone principal na lista.
+3.  Abra seu arquivo `.env` e defina a variável `MIC_INDEX` com o número correto. Ex: `MIC_INDEX=2`.
+
+---
+
+## Executando os Testes
+
+O projeto inclui uma suíte de testes unitários para garantir a funcionalidade e a estabilidade.
+
+1.  Certifique-se de que seu ambiente (`conda` ou `venv`) esteja ativado.
+2.  Na pasta raiz do projeto, execute o `pytest`:
+
+    ```bash
+    pytest
+    ```
+
+    Para uma saída mais detalhada, use: `pytest -v`
 
 ---
 

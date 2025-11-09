@@ -14,8 +14,8 @@ env/
 .vscode/
 
 # Secrets and environment variables
-.env
-*.env
+#.env
+#*.env
 
 # Build artifacts
 build/

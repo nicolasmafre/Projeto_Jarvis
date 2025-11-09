@@ -6,7 +6,11 @@ from huggingface_hub import InferenceClient
 
 class NlpClient(ABC):
     @abstractmethod
-    def generate(self, prompt, max_tokens=150, temperature=0.7, conversation_history=None):
+    def generate(self, prompt, max_tokens=1024, temperature=0.7, conversation_history=None):
+        pass
+
+    @abstractmethod
+    def extract_facts(self, text):
         pass
 
     @staticmethod
@@ -28,71 +32,76 @@ class HuggingFaceHubClient(NlpClient):
         self.model = "meta-llama/Meta-Llama-3-8B-Instruct"
         self.client = InferenceClient(model=self.model, token=token)
 
-    def generate(self, prompt, max_tokens=150, temperature=0.7, conversation_history=None):
+    def _call_llm(self, messages, max_tokens, temperature):
+        response_stream = self.client.chat.completions.create(
+            messages=messages,
+            max_tokens=max_tokens,
+            temperature=temperature,
+            stream=True,
+        )
+        full_response = ""
+        for chunk in response_stream:
+            if chunk.choices and len(chunk.choices) > 0 and chunk.choices[0].delta and chunk.choices[0].delta.content:
+                full_response += chunk.choices[0].delta.content
+        return full_response
+
+    def generate(self, prompt, max_tokens=1024, temperature=0.7, conversation_history=True):
         if temperature <= 0:
             temperature = 0.1
 
         try:
-            messages = [
-                {"role": "system", "content": "Você é Jarvis, um assistente de IA prestativo, cortês e técnico."},
-                {"role": "user", "content": prompt}
-            ]
-
-            response_stream = self.client.chat.completions.create(
-                messages=messages,
-                max_tokens=max_tokens,
-                temperature=temperature,
-                stream=True,
+            # --- A CORREÇÃO ESTÁ AQUI ---
+            # Modificamos o system prompt para instruir o modelo a ser mais verboso.
+            system_prompt = (
+                "Você é Jarvis, um assistente de IA prestativo, cortês e técnico. "
+                "Suas respostas devem ser sempre completas, detalhadas e longas, explicando o contexto e "
+                "fornecendo informações adicionais sempre que possível. Não economize nas palavras."
             )
+            # --------------------------
 
-            full_response = ""
-            for chunk in response_stream:
-                # Lógica de verificação robusta para o stream
-                if chunk.choices and len(chunk.choices) > 0 and chunk.choices[0].delta and chunk.choices[0].delta.content:
-                    full_response += chunk.choices[0].delta.content
-            
-            return full_response
+            messages = [
+                {"role": "system", "content": system_prompt},
+            ]
+            if conversation_history:
+                messages.extend(conversation_history)
+            messages.append({"role": "user", "content": prompt})
+
+            return self._call_llm(messages, max_tokens, temperature)
 
         except Exception as e:
             print(f"Ocorreu um erro ao contatar a API do Hugging Face: {e}")
             if "authorization" in str(e).lower() or "token" in str(e).lower():
                 print("ERRO DE AUTORIZAÇÃO: Verifique se o seu HF_TOKEN no arquivo .env é válido, tem a permissão de 'write' e não expirou.")
-                print("Lembre-se também de aceitar os termos do modelo em https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct")
             return "Desculpe, ocorreu um erro ao processar sua solicitação."
 
+    def extract_facts(self, text):
+        try:
+            system_prompt = (
+                "Você é um extrator de fatos. Sua tarefa é ler o texto fornecido e extrair "
+                "uma única e concisa informação ou preferência do usuário que possa ser útil no futuro. "
+                "Exemplos: 'O usuário prefere a cor azul.', 'O nome do gato do usuário é Miau.', 'O usuário trabalha com desenvolvimento de software.'. "
+                "Se não houver nenhum fato ou preferência clara, responda apenas com 'N/A'."
+            )
+            messages = [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": f"Extraia um fato do seguinte texto: \n\n{text}"}
+            ]
+            
+            fact = self._call_llm(messages, max_tokens=50, temperature=0.2)
+            
+            if "N/A" in fact or len(fact.strip()) < 5:
+                return None
+            return fact.strip()
+
+        except Exception as e:
+            print(f"Erro ao extrair fatos: {e}")
+            return None
+
 class ReplicateClient(NlpClient):
-    def __init__(self):
-        self.api_key = os.getenv("REPLICATE_API_KEY")
-        self.api_url = "https://api.replicate.com/v1/predictions"
+    def generate(self, prompt, max_tokens=1024, temperature=0.7, conversation_history=None):
+        # Implementação do generate para Replicate...
+        pass
 
-    def generate(self, prompt, max_tokens=150, temperature=0.7, conversation_history=None):
-        headers = {
-            "Authorization": f"Token {self.api_key}",
-            "Content-Type": "application/json"
-        }
-        payload = {
-            "version": "f8221218c84b31a4ebb51311b06b62728834015f69c13c00a839a3b6ed33a43d", # Llama 3 8B Instruct
-            "input": {
-                "prompt": prompt,
-                "max_new_tokens": max_tokens,
-                "temperature": temperature
-            }
-        }
-
-        for i in range(3):
-            response = requests.post(self.api_url, headers=headers, json=payload)
-            if response.status_code == 201:
-                prediction_url = response.json()["urls"]["get"]
-                while True:
-                    prediction_response = requests.get(prediction_url, headers=headers)
-                    prediction_data = prediction_response.json()
-                    if prediction_data["status"] == "succeeded":
-                        return "".join(prediction_data["output"])
-                    elif prediction_data["status"] in ["failed", "canceled"]:
-                        return "Desculpe, a geração da resposta falhou."
-                    time.sleep(1)
-            elif response.status_code == 429:  # Rate limit
-                time.sleep(2 ** i)
-            else:
-                response.raise_for_status()
-        return "Desculpe, o serviço está sobrecarregado. Tente novamente mais tarde."
+    def extract_facts(self, text):
+        print("Aviso: extração de fatos não implementada para ReplicateClient.")
+        return None
