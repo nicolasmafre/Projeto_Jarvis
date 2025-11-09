@@ -7,3 +7,5 @@ SpeechRecognition
 PyAudio
 pytest
 huggingface-hub
+sentence-transformers
+torch

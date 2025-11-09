@@ -29,6 +29,7 @@ class HuggingFaceHubClient(NlpClient):
         if not token:
             raise ValueError("A chave de API do Hugging Face não foi encontrada. Defina a variável de ambiente HF_TOKEN ou HUGGINGFACE_API_KEY.")
         
+        #self.model = "sentence-transformers/all-MiniLM-L6-v2"
         self.model = "meta-llama/Meta-Llama-3-8B-Instruct"
         self.client = InferenceClient(model=self.model, token=token)
 
