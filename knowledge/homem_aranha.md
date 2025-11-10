@@ -1,0 +1,1 @@
+Homem-Aranha (Peter Parker): Possui força, agilidade e sentido de aranha. Consegue se fixar em superfícies e tem um sexto sentido que o alerta sobre perigos iminentes. Ele mesmo construiu um dispositivo que dispara teias artificiais para se locomover e lutar.

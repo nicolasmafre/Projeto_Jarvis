@@ -1,0 +1,1 @@
+Homem de Ferro (Tony Stark): Gênio, bilionário, playboy, filantropo. Usa uma armadura de alta tecnologia para combater o crime. Sua principal fonte de energia é o Reator Arc no peito.

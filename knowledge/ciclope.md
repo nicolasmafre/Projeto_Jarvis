@@ -1,0 +1,1 @@
+Ciclope (Scott Summers): Possui raios ópticos de energia.

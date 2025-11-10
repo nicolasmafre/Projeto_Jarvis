@@ -1,0 +1,1 @@
+Thor Odinson: O Deus do Trovão, príncipe de Asgard. Empunha o martelo Mjolnir (ou mais tarde, o machado Stormbreaker), que lhe concede o poder de controlar raios e voar.

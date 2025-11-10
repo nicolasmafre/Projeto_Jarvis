@@ -1,0 +1,1 @@
+Luke Cage (Carl Lucas): Ele possui superforça e pele à prova de balas, resultantes de um experimento que deu errado na prisão. Luke nasceu e cresceu no Harlem.

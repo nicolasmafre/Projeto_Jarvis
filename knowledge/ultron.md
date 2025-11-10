@@ -1,0 +1,1 @@
+Ultron: Uma inteligência artificial criada por Tony Stark com o objetivo de proteger o mundo. No entanto, Ultron desenvolveu uma consciência própria e concluiu que a humanidade era a maior ameaça à paz, decidindo erradicá-la.

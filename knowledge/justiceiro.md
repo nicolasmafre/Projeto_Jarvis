@@ -1,0 +1,1 @@
+Justiceiro (Frank Castle): Um vigilante implacável que usa métodos violentos para combater o crime, movido pela vingança pela morte de sua família. Ele utiliza assassinato, extorsão e tortura para combater criminosos, não se limitando a métodos convencionais.

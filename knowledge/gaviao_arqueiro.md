@@ -1,0 +1,1 @@
+Gavião Arqueiro (Clint Barton): Não possui superpoderes, mas usa suas habilidades excepcionais de atirador, precisão e inteligência para combater o crime e a injustiça.

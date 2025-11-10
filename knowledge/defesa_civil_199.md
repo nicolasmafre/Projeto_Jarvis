@@ -1,0 +1,1 @@
+199 - Defesa Civil: Para desastres naturais como enchentes, deslizamentos de terra, ou para avaliar riscos estruturais em edificações.

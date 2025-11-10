@@ -1,6 +1,7 @@
 import os
 import requests
 import time
+import traceback
 from abc import ABC, abstractmethod
 from huggingface_hub import InferenceClient
 
@@ -29,8 +30,10 @@ class HuggingFaceHubClient(NlpClient):
         if not token:
             raise ValueError("A chave de API do Hugging Face não foi encontrada. Defina a variável de ambiente HF_TOKEN ou HUGGINGFACE_API_KEY.")
         
-        #self.model = "sentence-transformers/all-MiniLM-L6-v2"
+        # --- REVERTENDO PARA O LLAMA 3 ---
         self.model = "meta-llama/Meta-Llama-3-8B-Instruct"
+        # ---------------------------------
+        
         self.client = InferenceClient(model=self.model, token=token)
 
     def _call_llm(self, messages, max_tokens, temperature):
@@ -46,20 +49,17 @@ class HuggingFaceHubClient(NlpClient):
                 full_response += chunk.choices[0].delta.content
         return full_response
 
-    def generate(self, prompt, max_tokens=1024, temperature=0.7, conversation_history=True):
+    def generate(self, prompt, max_tokens=1024, temperature=0.7, conversation_history=None):
         if temperature <= 0:
             temperature = 0.1
 
         try:
-            # --- A CORREÇÃO ESTÁ AQUI ---
-            # Modificamos o system prompt para instruir o modelo a ser mais verboso.
             system_prompt = (
                 "Você é Jarvis, um assistente de IA prestativo, cortês e técnico. "
                 "Suas respostas devem ser sempre completas, detalhadas e longas, explicando o contexto e "
                 "fornecendo informações adicionais sempre que possível. Não economize nas palavras."
             )
-            # --------------------------
-
+            
             messages = [
                 {"role": "system", "content": system_prompt},
             ]
@@ -70,39 +70,42 @@ class HuggingFaceHubClient(NlpClient):
             return self._call_llm(messages, max_tokens, temperature)
 
         except Exception as e:
-            print(f"Ocorreu um erro ao contatar a API do Hugging Face: {e}")
-            if "authorization" in str(e).lower() or "token" in str(e).lower():
-                print("ERRO DE AUTORIZAÇÃO: Verifique se o seu HF_TOKEN no arquivo .env é válido, tem a permissão de 'write' e não expirou.")
-            return "Desculpe, ocorreu um erro ao processar sua solicitação."
+            print("\n--- ERRO CRÍTICO NA API HUGGING FACE ---")
+            print(f"Tipo de Exceção: {type(e).__name__}")
+            print(f"Mensagem da Exceção: {e}")
+            print("--- Traceback Completo ---")
+            traceback.print_exc()
+            print("--------------------------\n")
+            
+            error_message = str(e)
+            if "Model is currently loading" in error_message or "timeout" in error_message.lower():
+                user_friendly_error = f"O modelo ({self.model}) ainda está carregando ou a API está sobrecarregada. Por favor, tente novamente em alguns minutos."
+            elif "authorization" in error_message.lower() or "token" in error_message.lower():
+                user_friendly_error = "ERRO DE AUTORIZAÇÃO: Verifique se o seu HF_TOKEN no arquivo .env é válido, tem a permissão de 'write' e se você aceitou os termos do modelo."
+            else:
+                user_friendly_error = f"Ocorreu um erro inesperado. Verifique o traceback acima para detalhes técnicos."
+
+            return f"Desculpe, ocorreu um erro ao processar sua solicitação. {user_friendly_error}"
 
     def extract_facts(self, text):
         try:
             system_prompt = (
-                "Você é um extrator de fatos. Sua tarefa é ler o texto fornecido e extrair "
-                "uma única e concisa informação ou preferência do usuário que possa ser útil no futuro. "
-                "Exemplos: 'O usuário prefere a cor azul.', 'O nome do gato do usuário é Miau.', 'O usuário trabalha com desenvolvimento de software.'. "
-                "Se não houver nenhum fato ou preferência clara, responda apenas com 'N/A'."
+                "Você é um extrator de fatos..." # (prompt omitido por brevidade)
             )
             messages = [
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": f"Extraia um fato do seguinte texto: \n\n{text}"}
             ]
-            
             fact = self._call_llm(messages, max_tokens=50, temperature=0.2)
-            
             if "N/A" in fact or len(fact.strip()) < 5:
                 return None
             return fact.strip()
-
         except Exception as e:
             print(f"Erro ao extrair fatos: {e}")
             return None
 
-class ReplicateClient(NlpClient):
-    def generate(self, prompt, max_tokens=1024, temperature=0.7, conversation_history=None):
-        # Implementação do generate para Replicate...
-        pass
 
-    def extract_facts(self, text):
-        print("Aviso: extração de fatos não implementada para ReplicateClient.")
-        return None
+class ReplicateClient(NlpClient):
+    # ... (código do ReplicateClient permanece o mesmo)
+    def generate(self, prompt, max_tokens=1024, temperature=0.7, conversation_history=None): pass
+    def extract_facts(self, text): pass

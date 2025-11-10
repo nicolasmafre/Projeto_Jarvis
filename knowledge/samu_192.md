@@ -1,0 +1,1 @@
+192 - SAMU (Serviço de Atendimento Móvel de Urgência): Para emergências médicas, como acidentes graves, infartos, AVCs, e outras situações de risco à vida que necessitem de uma ambulância.

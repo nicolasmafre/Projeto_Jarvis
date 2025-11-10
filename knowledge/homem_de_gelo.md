@@ -1,0 +1,1 @@
+Homem de Gelo (Bobby Drake): Pode congelar objetos e criar gelo.

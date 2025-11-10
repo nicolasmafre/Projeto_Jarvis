@@ -1,0 +1,1 @@
+Hulk (Bruce Banner): Um cientista brilhante que, após um acidente com radiação gama, se transforma em uma criatura verde gigante e superforte quando fica com raiva ou estressado.

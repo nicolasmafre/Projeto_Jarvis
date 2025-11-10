@@ -1,0 +1,1 @@
+156 - Atendimento da Prefeitura: Número geral para solicitar serviços municipais, como reparo de iluminação pública, tapa-buracos, e obter informações sobre serviços da sua cidade (o número pode variar em alguns municípios).

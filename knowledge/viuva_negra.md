@@ -1,0 +1,1 @@
+Viúva Negra (Natasha Romanoff): Ex-espiã soviética treinada na "Sala Vermelha", uma academia para agentes secretos. Tornou-se membro dos Vingadores e da agência de espionagem S.H.I.E.L.D.

@@ -1,0 +1,1 @@
+Jessica Jones: Se tornou detetive particular, utilizando sua força sobre-humana, resistência e inteligência para resolver casos em Nova York. Os poderes de Jessica vieram de um acidente que a expôs a produtos químicos radioativos, e ela ganhou seu nome após ser adotada pela família Jones.

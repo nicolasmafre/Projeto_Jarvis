@@ -1,0 +1,1 @@
+Capitão América (Steve Rogers): Um super-soldado da Segunda Guerra Mundial. Possui força, agilidade e resistência aprimoradas. Seu escudo é feito de Vibranium, um metal quase indestrutível.

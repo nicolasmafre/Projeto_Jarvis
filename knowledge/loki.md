@@ -1,0 +1,1 @@
+Loki Laufeyson: O Deus da Trapaça, irmão adotivo de Thor. É um mestre em magia, ilusão e manipulação. Suas motivações são complexas, variando entre a busca por poder e a necessidade de autoafirmação.

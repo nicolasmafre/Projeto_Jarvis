@@ -1,0 +1,1 @@
+Fera (Dr. Hank McCoy): Possui força, agilidade, resistência e inteligência aprimoradas.

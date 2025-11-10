@@ -1,0 +1,1 @@
+Thanos: Um Titã obcecado em trazer "equilíbrio" ao universo, eliminando metade de toda a vida. Seu poder é imensamente amplificado pela Manopla do Infinito, que, quando completa com as seis Joias do Infinito, lhe concede onipotência.
