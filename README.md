@@ -2,7 +2,7 @@
 
 Este projeto implementa um assistente de linguagem natural multifacetado, inspirado no Jarvis. Ele combina um poderoso modelo de linguagem (LLM) com uma base de conhecimento local, memória de longo prazo e múltiplas interfaces de usuário, incluindo CLI, Web e uma GUI de desktop.
 
-![Jarvis GUI Screenshot](https://i.imgur.com/your-screenshot-url.png) <!-- Adicione um screenshot da sua GUI aqui! -->
+![Jarvis GUI Screenshot](images/jarvis_gui_flet.png) <!-- Adicione um screenshot da sua GUI aqui! -->
 
 ## Estrutura do Projeto
 

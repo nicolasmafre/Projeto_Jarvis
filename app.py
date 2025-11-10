@@ -14,7 +14,7 @@ from tts import TTS
 ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
 
 def py_error_handler(filename, line, function, err, fmt):
-    """Função vazia para atuar como nosso manipulador de erro."""
+    """Função vazia para atuar como nosso manipulador de erro C."""
     pass
 
 c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
@@ -37,13 +37,14 @@ def no_alsa_err():
 app = Flask(__name__)
 jarvis = Jarvis()
 
-# ... (o resto das rotas Flask permanecem as mesmas) ...
 @app.route("/", methods=["GET"])
 def index():
+    """Renderiza a página principal do chat web."""
     return render_template("index.html")
 
 @app.route("/chat", methods=["POST"])
 def chat():
+    """Processa as mensagens de chat da interface web ou API."""
     is_htmx = "HX-Request" in request.headers
     prompt = request.form.get("prompt") if is_htmx else request.get_json().get("prompt")
 
@@ -61,10 +62,11 @@ def chat():
 
 @app.route("/voice", methods=["POST"])
 def voice():
+    """Endpoint futuro para processamento de áudio de voz."""
     return jsonify({"error": "Endpoint de voz ainda não implementado"}), 501
 
-
 def cli_interface():
+    """Inicia a interface de linha de comando com um menu de seleção de modo."""
     print("=================================")
     print("      INICIAR PROJETO JARVIS     ")
     print("=================================")
@@ -76,6 +78,7 @@ def cli_interface():
         run_text_cli()
 
 def run_text_cli():
+    """Executa o loop da CLI para interação baseada em texto."""
     print("\n--- Modo Texto Ativado ---")
     print("Jarvis: Olá! Como posso ajudar?")
     while True:
@@ -91,24 +94,19 @@ def run_text_cli():
             break
 
 def run_voice_cli():
-    """Loop da CLI para interação por voz, gerenciando o pavucontrol."""
+    """Executa o loop da CLI para interação por voz, gerenciando o pavucontrol."""
     print("\n--- Modo Voz Ativado ---")
     pavucontrol_process = None
     
     try:
-        # --- Inicia o pavucontrol em segundo plano (apenas no Linux) ---
         if platform.system() == "Linux":
             print("Tentando iniciar o PulseAudio Volume Control (pavucontrol)...")
             try:
-                # Popen não bloqueia, e redirecionamos a saída para não poluir o terminal
                 pavucontrol_process = subprocess.Popen(["pavucontrol"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
                 print("pavucontrol iniciado em segundo plano. Use-o para ajustar seu microfone.")
             except FileNotFoundError:
                 print("Aviso: 'pavucontrol' não encontrado. Continuando sem ele.")
-            except Exception as e:
-                print(f"Aviso: Erro ao iniciar pavucontrol: {e}")
-        # ----------------------------------------------------------------
-
+        
         with no_alsa_err():
             tts_instance = TTS()
 
@@ -142,21 +140,17 @@ def run_voice_cli():
     except KeyboardInterrupt:
         print("\nSaindo...")
     finally:
-        # --- Encerra o pavucontrol ao sair ---
         if pavucontrol_process:
             print("\nEncerrando o pavucontrol...")
             pavucontrol_process.terminate()
             try:
-                # Espera um pouco para o processo terminar graciosamente
                 pavucontrol_process.wait(timeout=2)
             except subprocess.TimeoutExpired:
-                # Se não terminar, força o encerramento
                 pavucontrol_process.kill()
             print("pavucontrol encerrado.")
         
         exit_message = "Até logo!"
         print(f"Jarvis: {exit_message}")
-        # Garante que a mensagem de despedida seja falada mesmo com Ctrl+C
         if 'tts_instance' in locals():
             tts_instance.speak(exit_message)
 
