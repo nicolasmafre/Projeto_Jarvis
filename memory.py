@@ -1,8 +1,5 @@
 """
 Módulo para gerenciar a memória de longo prazo do assistente.
-
-Este módulo permite que o Jarvis armazene e recupere fatos aprendidos
-durante as conversas, persistindo-os em um arquivo JSON.
 """
 
 import json
@@ -15,25 +12,25 @@ class LongTermMemory:
     def __init__(self, memory_file="memory.json", memory_dir="memory"):
         """
         Inicializa a memória, carregando fatos de um arquivo existente.
-
-        Args:
-            memory_file (str): O nome do arquivo JSON da memória.
-            memory_dir (str): O diretório onde o arquivo de memória será armazenado.
         """
         self.memory_dir = memory_dir
         os.makedirs(self.memory_dir, exist_ok=True)
         self.memory_file = os.path.join(self.memory_dir, memory_file)
         self.facts = self._load_memory()
+        print(f"[Memória] Inicializada. {len(self.facts)} fatos carregados de '{self.memory_file}'.")
 
     def _load_memory(self):
         """Carrega os fatos do arquivo JSON para a memória."""
         if os.path.exists(self.memory_file):
             try:
                 with open(self.memory_file, 'r', encoding='utf-8') as f:
-                    return json.load(f)
+                    facts = json.load(f)
+                    print(f"[Memória] Arquivo '{self.memory_file}' encontrado e lido.")
+                    return facts
             except (json.JSONDecodeError, IOError):
-                print("Aviso: Arquivo de memória corrompido ou ilegível. Começando com memória vazia.")
+                print(f"Aviso: Arquivo de memória '{self.memory_file}' corrompido ou ilegível. Começando com memória vazia.")
                 return []
+        print(f"[Memória] Arquivo '{self.memory_file}' não encontrado. Começando com memória vazia.")
         return []
 
     def _save_memory(self):
@@ -47,12 +44,6 @@ class LongTermMemory:
     def add_fact(self, fact):
         """
         Adiciona um novo fato à memória, se ele ainda não existir.
-
-        Args:
-            fact (str): O fato a ser adicionado.
-
-        Returns:
-            bool: True se o fato foi adicionado, False caso contrário.
         """
         if fact and isinstance(fact, str) and fact not in self.facts:
             self.facts.append(fact)
@@ -63,17 +54,6 @@ class LongTermMemory:
     def get_relevant_facts(self, query, top_n=3):
         """
         Recupera os fatos mais relevantes para uma dada consulta.
-
-        Esta é uma implementação simples baseada em contagem de palavras-chave.
-        Para uma versão mais avançada, esta função seria substituída por
-        uma busca por similaridade de vetores (embeddings).
-
-        Args:
-            query (str): A consulta ou prompt do usuário.
-            top_n (int): O número máximo de fatos relevantes a serem retornados.
-
-        Returns:
-            list: Uma lista de strings contendo os fatos mais relevantes.
         """
         if not self.facts:
             return []

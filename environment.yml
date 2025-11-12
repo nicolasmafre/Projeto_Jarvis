@@ -27,3 +27,5 @@ dependencies:
     - SpeechRecognition
     - sentence-transformers
     - flet
+    - transformers
+    - duckduckgo-search

@@ -1,9 +1,5 @@
 """
 Módulo central que define a classe principal do assistente Jarvis.
-
-Este módulo integra todos os outros componentes, como o cliente de NLP,
-o sistema de RAG, a memória de longo prazo e o manipulador de comandos,
-para orquestrar a lógica de interação do assistente.
 """
 
 import os
@@ -12,15 +8,14 @@ from nlp_client import NlpClient
 from rag import Rag
 from commands import CommandHandler
 from memory import LongTermMemory
+from sentiment import SentimentAnalyzer
+from web_search import search_web
 
 load_dotenv()
 
 class Jarvis:
     """
     A classe principal do assistente Jarvis.
-
-    Orquestra a interação entre o usuário e os diferentes subsistemas
-    (NLP, RAG, Memória, Comandos) para gerar respostas.
     """
     def __init__(self):
         """Inicializa todos os componentes do assistente."""
@@ -29,82 +24,60 @@ class Jarvis:
         self.command_handler = CommandHandler()
         self.conversation_history = []
         self.memory = LongTermMemory()
+        self.sentiment_analyzer = SentimentAnalyzer()
         print("[Jarvis] Assistente inicializado e pronto.")
 
-    def _enrich_prompt_with_memory(self, prompt):
+    def _learn_from_interaction(self, user_prompt):
         """
-        Enriquece o prompt do usuário com fatos relevantes da memória de longo prazo.
-
-        Args:
-            prompt (str): O prompt original do usuário.
-
-        Returns:
-            str: O prompt enriquecido com contexto da memória, ou o prompt original.
+        Extrai e armazena fatos do prompt do usuário na memória de longo prazo.
         """
-        relevant_facts = self.memory.get_relevant_facts(prompt)
-        if not relevant_facts:
-            return prompt
-
-        memory_context = "\n\n--- Fatos relevantes da memória ---\n"
-        for fact in relevant_facts:
-            memory_context += f"- {fact}\n"
-        memory_context += "--- Fim dos fatos ---\n"
-        
-        return f"{memory_context}\nPergunta original: {prompt}"
-
-    def _learn_from_interaction(self, user_prompt, assistant_response):
-        """
-        Extrai e armazena fatos da interação atual na memória de longo prazo.
-
-        Args:
-            user_prompt (str): O prompt enviado pelo usuário.
-            assistant_response (str): A resposta gerada pelo assistente.
-        """
-        if assistant_response.startswith("Desculpe, ocorreu um erro"):
-            return
-
-        interaction_text = f"Usuário: \"{user_prompt}\"\nAssistente: \"{assistant_response}\""
-        
-        fact = self.nlp_client.extract_facts(interaction_text)
+        fact = self.nlp_client.extract_facts(user_prompt)
         if fact:
             if self.memory.add_fact(fact):
-                print(f"[Memória]: Novo fato aprendido: {fact}")
+                print(f"[Memória]: Novo fato aprendido e salvo: {fact}")
 
-    def interact(self, prompt):
+    def interact(self, prompt: str) -> str:
         """
         Processa um prompt do usuário e retorna a resposta do assistente.
-
-        O fluxo de processamento é:
-        1. Tenta responder usando a base de conhecimento estática (RAG).
-        2. Se não houver resposta do RAG, enriquece o prompt com a memória de longo prazo.
-        3. Gera uma resposta usando o cliente de NLP (LLM).
-        4. Tenta aprender fatos da interação para a memória de longo prazo.
-        5. Verifica se a resposta é um comando a ser executado.
-
-        Args:
-            prompt (str): O prompt do usuário.
-
-        Returns:
-            str: A resposta final do assistente.
         """
+        self._learn_from_interaction(prompt)
+
         rag_answer = self.rag.answer_with_rag(prompt)
         if rag_answer:
-            self._learn_from_interaction(prompt, rag_answer)
-            return rag_answer
+            return f"(Com base no meu conhecimento local)\n{rag_answer}"
 
-        enriched_prompt = self._enrich_prompt_with_memory(prompt)
-        
-        self.conversation_history.append({"role": "user", "content": enriched_prompt})
+        tool_decision = self.nlp_client.decide_on_tool(prompt)
+        search_query = tool_decision.get("query") if tool_decision and tool_decision.get("tool") == "web_search" else None
+
+        if search_query:
+            print(f"[Jarvis] Decidi pesquisar na web sobre: '{search_query}'")
+            search_results = search_web(search_query)
+            
+            # --- PROMPT FINAL REFINADO PARA BUSCA ---
+            final_prompt = (
+                f"Com base **exclusivamente** nos seguintes resultados de pesquisa, responda à pergunta do usuário.\n\n"
+                f"--- Resultados da Pesquisa na Web ---\n{search_results}\n--- Fim dos Resultados ---\n\n"
+                f"Pergunta original do usuário: {prompt}"
+            )
+        else:
+            # Se não houver busca, enriquece com memória e sentimento
+            sentiment = self.sentiment_analyzer.analyze(prompt)
+            sentiment_context = f"O sentimento do usuário parece ser {sentiment}."
+            
+            relevant_facts = self.memory.get_relevant_facts(prompt)
+            memory_context = ""
+            if relevant_facts:
+                memory_context = "\n\n--- Fatos relevantes da memória ---\n" + "\n".join(f"- {fact}" for fact in relevant_facts)
+                print(f"[Memória] Fatos relevantes encontrados e adicionados ao prompt: {relevant_facts}")
+
+            final_prompt = f"Contexto: {sentiment_context}{memory_context}\n\nPergunta: {prompt}"
+
+        self.conversation_history.append({"role": "user", "content": final_prompt})
         response = self.nlp_client.generate(
-            prompt=enriched_prompt,
+            prompt=final_prompt,
             conversation_history=self.conversation_history
         )
         self.conversation_history.append({"role": "assistant", "content": response})
 
-        self._learn_from_interaction(prompt, response)
-
         command_response = self.command_handler.handle(response)
-        if command_response:
-            return command_response
-
-        return response
+        return command_response if command_response else response
