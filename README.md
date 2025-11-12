@@ -99,7 +99,7 @@ O projeto é organizado nos seguintes módulos principais:
 #### 3.1. Modelos de Linguagem (LLMs e Embeddings)
 
 - **SentenceTransformer (all-MiniLM-L6-v2)**: Utilizado no arquivo rag.py. Este não é um LLM, mas sim um modelo de embedding de sentenças. Sua função é converter trechos de texto (perguntas e documentos) em vetores numéricos (embeddings) que representam seu significado semântico. Isso permite que o sistema encontre documentos relevantes para uma pergunta com base na similaridade de significado, e não apenas em palavras-chave.
-- **LLM Principal (Não especificado)**: O arquivo jarvis.py (não fornecido) é responsável por interagir com um Grande Modelo de Linguagem (LLM) como o GPT da OpenAI, Gemini do Google, ou outro. Este modelo é o cérebro que efetivamente gera as respostas em linguagem natural, utilizando o contexto fornecido pelo RAG e pela memória.
+- **LLM Principal (meta-llama/Meta-Llama-3-8B-Instruct)**: O verdadeiro "cérebro" do assistente Jarvis. Ele é o Grande Modelo de Linguagem (LLM) responsável por todo o raciocínio, geração de texto e tomada de decisões que efetivamente gera as respostas em linguagem natural, utilizando o contexto fornecido pelo RAG e pela memória.
 
 #### 3.2. Engenharia e Mineração de Dados
 
