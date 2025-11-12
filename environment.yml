@@ -1,31 +1,126 @@
 name: Projeto_Jarvis
-
 channels:
-  - pytorch
   - conda-forge
   - defaults
-
 dependencies:
-  # --- Versão do Python ---
-  - python=3.10
-
-  # --- Pacotes Conda ---
-  - pytorch
-  - cpuonly # Adicione esta linha se você NÃO tem uma GPU NVIDIA. Remova se tiver.
-  - pyaudio
-  - scikit-learn
-  - flask
-  - requests
-  - python-dotenv
-  - pytest
-  - huggingface-hub
-
-  # --- Pacotes Pip ---
-  - pip
+  - _libgcc_mutex=0.1=conda_forge
+  - _openmp_mutex=4.5=2_gnu
+  - alsa-lib=1.2.14=hb9d3cd8_0
+  - brotli-python=1.2.0=py313h09d1b84_0
+  - bzip2=1.0.8=hda65f42_8
+  - ca-certificates=2025.10.5=hbd8a1cb_0
+  - certifi=2025.10.5=pyhd8ed1ab_0
+  - cffi=2.0.0=py313hf46b229_1
+  - charset-normalizer=3.4.4=pyhd8ed1ab_0
+  - h2=4.3.0=pyhcf101f3_0
+  - hpack=4.1.0=pyhd8ed1ab_0
+  - hyperframe=6.1.0=pyhd8ed1ab_0
+  - icu=75.1=he02047a_0
+  - idna=3.11=pyhd8ed1ab_0
+  - jack=1.9.22=hf4617a5_3
+  - ld_impl_linux-64=2.44=h1aa0949_4
+  - libexpat=2.7.1=hecca717_0
+  - libffi=3.5.2=h9ec8514_0
+  - libgcc=15.2.0=h767d61c_7
+  - libgcc-ng=15.2.0=h69a702a_7
+  - libgomp=15.2.0=h767d61c_7
+  - liblzma=5.8.1=hb9d3cd8_2
+  - libmpdec=4.0.0=hb9d3cd8_0
+  - libopus=1.5.2=hd0c01bc_0
+  - libsqlite=3.51.0=hee844dc_0
+  - libstdcxx=15.2.0=h8f9b012_7
+  - libstdcxx-ng=15.2.0=h4852527_7
+  - libuuid=2.41.2=he9a06e4_0
+  - libzlib=1.3.1=hb9d3cd8_2
+  - ncurses=6.5=h2d0b736_3
+  - openssl=3.5.4=h26f9b46_0
+  - pip=25.2=pyh145f28c_0
+  - portaudio=19.7.0=hf4617a5_0
+  - pyaudio=0.2.14=py313h5f52a73_3
+  - pycparser=2.22=pyh29332c3_1
+  - pysocks=1.7.1=pyha55dd90_7
+  - python=3.13.9=hc97d973_101_cp313
+  - python-dotenv=1.2.1=pyhcf101f3_0
+  - python_abi=3.13=8_cp313
+  - readline=8.2=h8c095d6_2
+  - requests=2.32.5=pyhd8ed1ab_0
+  - setuptools=80.9.0=pyhff2d567_0
+  - tk=8.6.13=noxft_hd72426e_102
+  - tzdata=2025b=h78e105d_0
+  - urllib3=2.5.0=pyhd8ed1ab_0
+  - zstandard=0.25.0=py313h54dd161_0
+  - zstd=1.5.7=hb8e6e7a_2
   - pip:
-    - pyttsx3
-    - SpeechRecognition
-    - sentence-transformers
-    - flet
-    - transformers
-    - duckduckgo-search
+      - anyio==4.11.0
+      - audioop-lts==0.2.2
+      - blinker==1.9.0
+      - click==8.3.0
+      - ddgs==9.9.0
+      - duckduckgo-search==8.1.1
+      - filelock==3.20.0
+      - flask==3.1.2
+      - flet==0.28.3
+      - flet-desktop==0.28.3
+      - fsspec==2025.10.0
+      - h11==0.16.0
+      - hf-xet==1.2.0
+      - httpcore==1.0.9
+      - httpx==0.28.1
+      - huggingface-hub==0.36.0
+      - iniconfig==2.3.0
+      - itsdangerous==2.2.0
+      - jinja2==3.1.6
+      - joblib==1.5.2
+      - lxml==6.0.2
+      - markupsafe==3.0.3
+      - mpmath==1.3.0
+      - networkx==3.5
+      - numpy==2.3.4
+      - nvidia-cublas-cu12==12.8.4.1
+      - nvidia-cuda-cupti-cu12==12.8.90
+      - nvidia-cuda-nvrtc-cu12==12.8.93
+      - nvidia-cuda-runtime-cu12==12.8.90
+      - nvidia-cudnn-cu12==9.10.2.21
+      - nvidia-cufft-cu12==11.3.3.83
+      - nvidia-cufile-cu12==1.13.1.3
+      - nvidia-curand-cu12==10.3.9.90
+      - nvidia-cusolver-cu12==11.7.3.90
+      - nvidia-cusparse-cu12==12.5.8.93
+      - nvidia-cusparselt-cu12==0.7.1
+      - nvidia-nccl-cu12==2.27.5
+      - nvidia-nvjitlink-cu12==12.8.93
+      - nvidia-nvshmem-cu12==3.3.20
+      - nvidia-nvtx-cu12==12.8.90
+      - oauthlib==3.3.1
+      - packaging==25.0
+      - pillow==12.0.0
+      - pluggy==1.6.0
+      - primp==0.15.0
+      - pygments==2.19.2
+      - pytest==8.4.2
+      - pyttsx3==2.99
+      - pyyaml==6.0.3
+      - regex==2025.11.3
+      - repath==0.9.0
+      - safetensors==0.6.2
+      - scikit-learn==1.7.2
+      - scipy==1.16.3
+      - sentence-transformers==5.1.2
+      - shellingham==1.5.4
+      - six==1.17.0
+      - sniffio==1.3.1
+      - socksio==1.0.0
+      - speechrecognition==3.14.3
+      - standard-aifc==3.13.0
+      - standard-chunk==3.13.0
+      - sympy==1.14.0
+      - threadpoolctl==3.6.0
+      - tokenizers==0.22.1
+      - torch==2.9.0
+      - tqdm==4.67.1
+      - transformers==4.57.1
+      - triton==3.5.0
+      - typer-slim==0.20.0
+      - typing-extensions==4.15.0
+      - werkzeug==3.1.3
+prefix: /home/nicolas/.miniconda3/envs/Projeto_Jarvis

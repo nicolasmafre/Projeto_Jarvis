@@ -135,6 +135,11 @@ Este arquivo é o ponto de entrada da aplicação e oferece três modos de opera
 
 #### 4.2. `gui_app.py`: Interface Gráfica
 
+Este arquivo é o ponto de entrada para a interface gráfica de desktop, construída com o framework **Flet**. Flet foi escolhido por sua simplicidade (toda a UI é escrita em Python) e por usar o motor de renderização do Flutter, o que resulta em uma aplicação moderna e performática.
+
+ **a) Lógica Principal (`main`)**
+ - **Inicialização da Página:** A função `main(page: ft.Page)` configura as propriedades da janela, como título, tema e dimensões.
+ - **Componentes da UI:** Define os componentes visuais principais: um `ft.ListView` para o chat, um `ft.TextField` para a entrada do usuário e um `ft.IconButton` para o envio.
 
 
 ## Guia de Instalação e Configuração
