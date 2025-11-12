@@ -43,6 +43,7 @@ Projeto_Jarvis/
 ├── knowledge/                # Pasta para a base de conhecimento estático (RAG)
 │   ├── marvel_data.md        # Exemplo de documento sobre heróis/vilões da Marvel
 │   └── servicos_publicos_br.md # Exemplo de documento sobre serviços públicos brasileiros
+│   ├── ... (seus arquivos .md ou .txt)
 ├── memory/                   # Pasta para a memória de longo prazo
 │   └── memory.json           # Arquivo onde os fatos aprendidos são armazenados
 ├── minimal_mic_test.py       # Script para testes isolados do microfone (depuração)
@@ -222,7 +223,21 @@ O Jarvis possui uma funcionalidade de **RAG (Retrieval-Augmented Generation)** q
 3.  Quando você faz uma pergunta, o Jarvis converte sua pergunta em um vetor e busca o documento com o significado mais próximo em sua base de conhecimento.
 4.  Se a similaridade for alta, ele usa esse documento para formular a resposta.
 
+  **a) Lógica Principal (`main`)**
+ - **Inicialização da Página:** A função `main(page: ft.Page)` configura as propriedades da janela, como título, tema e dimensões.
+ - **Componentes da UI:** Define os componentes visuais principais: um `ft.ListView` para o chat, um `ft.TextField` para a entrada do usuário e um `ft.IconButton` para o envio.
+
 Esta funcionalidade é extremamente poderosa para personalizar o conhecimento do Jarvis, permitindo que ele entenda o contexto e a intenção, em vez de apenas combinar palavras-chave.
+
+**b) Threading para Responsividade**
+ - **O Desafio:** Uma chamada para o `jarvis.interact()` pode levar vários segundos, pois envolve chamadas de API para o LLM. Se essa chamada fosse feita na thread principal da UI, a interface gráfica **congelaria** completamente até a resposta ser recebida.
+ - **A Solução:** Para evitar o congelamento, a lógica de interação com o Jarvis é executada em uma **thread separada**.
+   1. Quando o usuário clica em "Enviar", a função `send_message_click` é chamada.
+   2. A mensagem do usuário é exibida imediatamente na UI.
+   3. Os controles de entrada são desabilitados para prevenir envios múltiplos.
+   4. Um novo `threading.Thread` é criado, tendo a função `handle_jarvis_response` como alvo.
+   5. A thread é iniciada (`thread.start()`), e a UI continua responsiva.
+ - **Atualização Segura da UI:** A thread secundária (`handle_jarvis_response`) não pode atualizar a UI diretamente. Ela usa o método `page.run_thread()` para enviar as funções de atualização (como `show_message` e a reabilitação dos botões) de volta para a thread principal do Flet, que as executa de forma segura.
 
 ---
 
