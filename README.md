@@ -20,7 +20,17 @@ Este projeto implementa um assistente de linguagem natural multifacetado, inspir
 
 ---
 
+
+## Conhecimento
+
+---
+1. [Guia de Estudo e Recursos do Projeto Jarvis](LEARNING_RESOURCES.md)
+2. [Prompt Templates para o Jarvis](prompt_templates.md)
+
+
 ## Telas do projeto
+
+---
 
 ![Jarvis GUI Screenshot](images/jarvis_gui_flet.png)
 _Images 1: Jarvis GUI_
