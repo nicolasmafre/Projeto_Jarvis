@@ -29,11 +29,15 @@ class CommandHandler:
             str | None: O resultado da execução do comando, ou None se nenhum
                         comando for encontrado.
         """
+        # --- A CORREÇÃO ESTÁ AQUI ---
+        # Adiciona uma verificação para garantir que a resposta não é nula.
+        if not response:
+            return None
+        # --------------------------
+
         response_lower = response.lower()
         
-        # Exemplo de um comando simples: "liste os arquivos em ..."
         if "liste os arquivos em" in response_lower:
-            # Extrai o caminho do diretório após a frase do comando
             try:
                 dir_path = response_lower.split("liste os arquivos em")[-1].strip().replace("'", "").replace("\"", "")
                 if not dir_path:

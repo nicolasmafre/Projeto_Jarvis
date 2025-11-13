@@ -4,6 +4,7 @@ Módulo cliente para interagir com APIs de Modelos de Linguagem (LLMs).
 
 import os
 import traceback
+import json
 from abc import ABC, abstractmethod
 from huggingface_hub import InferenceClient
 
@@ -13,7 +14,7 @@ class NlpClient(ABC):
     @abstractmethod
     def extract_facts(self, text): pass
     @abstractmethod
-    def decide_on_tool(self, prompt): pass
+    def decide_on_tool(self, prompt, conversation_history): pass
 
     @staticmethod
     def create():
@@ -40,26 +41,23 @@ class HuggingFaceHubClient(NlpClient):
                 full_response += chunk.choices[0].delta.content
         return full_response
 
-    def decide_on_tool(self, prompt):
-        """Decide se uma pesquisa na web é necessária e formula a query de busca."""
-        # --- PROMPT DE DECISÃO REFINADO ---
+    def decide_on_tool(self, prompt, conversation_history):
+        """Decide se uma pesquisa na web é necessária, usando o contexto da conversa."""
         system_prompt = (
-            "Sua tarefa é analisar o prompt do usuário e decidir se uma pesquisa na web é necessária. "
-            "Responda apenas com um JSON. Use 'web_search' para perguntas sobre: \n"
-            "- Eventos atuais, notícias, previsão do tempo.\n"
-            "- Fatos específicos sobre pessoas, lugares, ou coisas (ex: 'onde fica', 'quem é', 'o que é').\n"
-            "- Qualquer pergunta que você não saberia responder com 100% de certeza com conhecimento de até 2023.\n"
-            "Se a pergunta for sobre os gostos do usuário, uma opinião, ou uma conversa geral, use 'none'.\n"
-            "Exemplos:\n"
-            'Pergunta: "Onde fica a cidade de Assis?" -> {"tool": "web_search", "query": "onde fica a cidade de Assis"}\n'
-            'Pergunta: "Qual a capital da França?" -> {"tool": "web_search", "query": "capital da França"}\n'
-            'Pergunta: "Você gosta de pizza?" -> {"tool": "none"}\n'
-            'Responda apenas com o JSON.'
+            "Sua tarefa é analisar a pergunta MAIS RECENTE do usuário e o histórico da conversa para decidir se uma pesquisa na web é necessária. "
+            "Use o histórico para entender referências como 'ele', 'esse lugar', 'isso'. Responda apenas com um JSON.\n"
+            "Use 'web_search' para perguntas sobre fatos, eventos, pessoas, ou lugares específicos.\n"
+            "Use 'none' para conversas gerais, opiniões ou perguntas sobre o próprio usuário.\n"
+            'Responda APENAS com o JSON.'
         )
-        messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": f"Pergunta: \"{prompt}\""}]
+        
+        messages = [{"role": "system", "content": system_prompt}]
+        if conversation_history:
+            messages.extend(conversation_history[-4:])
+        messages.append({"role": "user", "content": f"Pergunta: \"{prompt}\""})
+
         try:
             response = self._call_llm(messages, max_tokens=100, temperature=0.0)
-            import json
             return json.loads(response[response.find('{'):response.rfind('}')+1])
         except Exception:
             return {"tool": "none"}
@@ -68,10 +66,8 @@ class HuggingFaceHubClient(NlpClient):
         """Gera uma resposta de texto usando o modelo do Hugging Face."""
         try:
             system_prompt = (
-                "Você é Jarvis, um assistente de IA. Sua tarefa é sintetizar informações para responder à pergunta do usuário. "
-                "Se o usuário fornecer 'Resultados da Pesquisa na Web', baseie sua resposta **EXCLUSIVAMENTE** nesses resultados. Não adicione informações do seu conhecimento interno. "
-                "Se não houver resultados de pesquisa, responda à pergunta da melhor forma possível. "
-                "Sempre forneça respostas completas e detalhadas."
+                "Você é Jarvis, um assistente de IA prestativo, cortês e técnico. "
+                "Suas respostas devem ser sempre completas, detalhadas e longas."
             )
             messages = [{"role": "system", "content": system_prompt}]
             if conversation_history: messages.extend(conversation_history)
@@ -79,7 +75,9 @@ class HuggingFaceHubClient(NlpClient):
             return self._call_llm(messages, max_tokens, temperature)
         except Exception as e:
             print(f"Ocorreu um erro ao contatar a API do Hugging Face: {e}")
-            return f"Desculpe, ocorreu um erro ao processar sua solicitação."
+            # --- A CORREÇÃO ESTÁ AQUI ---
+            # Garante que uma string de erro seja sempre retornada.
+            return f"Desculpe, ocorreu um erro ao processar sua solicitação. Detalhes: {e}"
 
     def extract_facts(self, text):
         """Extrai fatos importantes de um texto usando o modelo do Hugging Face."""
@@ -88,11 +86,6 @@ class HuggingFaceHubClient(NlpClient):
                 "Você é um especialista em extrair informações importantes sobre um usuário a partir de um texto. "
                 "Seu objetivo é criar uma frase curta e afirmativa sobre o usuário. "
                 "Extraia nomes, locais, gostos, preferências ou qualquer fato pessoal.\n"
-                "Exemplos:\n"
-                "Texto: 'Meu nome é João e gosto de azul.' -> Fato: 'O nome do usuário é João.'\n"
-                "Texto: 'Lembre-se que moro em São Paulo.' -> Fato: 'O usuário mora em São Paulo.'\n"
-                "Texto: 'Eu adoro pizza e macarronada.' -> Fato: 'O usuário gosta de pizza e macarronada.'\n"
-                "Texto: 'Olá, tudo bem?' -> Fato: 'N/A'\n"
                 "Responda APENAS com o fato extraído ou com 'N/A'."
             )
             messages = [
@@ -111,4 +104,4 @@ class HuggingFaceHubClient(NlpClient):
 class ReplicateClient(NlpClient):
     def generate(self, prompt, max_tokens=1024, temperature=0.7, conversation_history=None): pass
     def extract_facts(self, text): pass
-    def decide_on_tool(self, prompt): return {"tool": "none"}
+    def decide_on_tool(self, prompt, conversation_history): return {"tool": "none"}

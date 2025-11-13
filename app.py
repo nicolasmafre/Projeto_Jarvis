@@ -4,11 +4,21 @@ import sys
 import contextlib
 import subprocess
 import platform
+import io
 from ctypes import CFUNCTYPE, c_char_p, c_int, cdll
 from flask import Flask, request, jsonify, render_template, Response
 from jarvis import Jarvis
 from stt import STT
 from tts import TTS
+
+# --- Força a codificação UTF-8 para stdin/stdout para evitar UnicodeDecodeError ---
+try:
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+except (TypeError, ValueError):
+    # Ocorre em alguns ambientes onde o buffer não está disponível (ex: IDEs)
+    print("Aviso: Não foi possível reconfigurar a codificação de stdin/stdout.")
+# --------------------------------------------------------------------------------
 
 # --- Context Manager Avançado para suprimir erros do ALSA ---
 ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
@@ -89,7 +99,7 @@ def run_text_cli():
                 break
             response = jarvis.interact(prompt)
             print(f"Jarvis: {response}")
-        except KeyboardInterrupt:
+        except (KeyboardInterrupt, EOFError):
             print("\nJarvis: Até logo!")
             break
 
@@ -137,7 +147,7 @@ def run_voice_cli():
             print(f"Jarvis: {response}")
             tts_instance.speak(response)
 
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, EOFError):
         print("\nSaindo...")
     finally:
         if pavucontrol_process:
