@@ -20,7 +20,19 @@ Este projeto implementa um assistente de linguagem natural multifacetado, inspir
 
 ---
 
-![Jarvis GUI Screenshot](https://i.imgur.com/your-screenshot-url.png) <!-- Adicione um screenshot da sua GUI aqui! -->
+## Telas do projeto
+
+![Jarvis GUI Screenshot](images/jarvis_gui_flet.png)
+_Images 1: Jarvis GUI_
+
+![Jarvis CLI Screenshot](images/jarvis_cli.png)
+_Images 2: Jarvis CLI_
+
+![Jarvis Web Screenshot](images/jarvis_web.png)
+_Images 3: Jarvis Web_
+
+---
+
 
 ## Estrutura do Projeto
 
@@ -67,7 +79,7 @@ Projeto_Jarvis/
 
 ---
 
-## Documentação Técnica - Projeto Jarvis
+## Documentação Técnica do Projeto Jarvis: Dados e Inteligência Artificial
 
 ### 1. Visão Geral do Projeto
 
@@ -104,11 +116,59 @@ O projeto é organizado nos seguintes módulos principais:
 
 #### 3.2. Engenharia e Mineração de Dados
 
-- **Mineração de Texto (no RAG)**: O processo em `rag.py` é um exemplo prático de mineração de texto. O sistema lê ('mine`) uma coleção de documentos não estruturados no diretório knowledge/.
-- **Engenharia de Dados (no RAG)**:
-  - **Extração**: Os textos são lidos dos arquivos.
-  - **Transformação**: O modelo `SentenceTransformer` é usado para transforma cada documento em um embedding vetorial.
-  - **Carregamento/Indexação**: Esses embeddings são armazenados na memória (`self.doc_embeddings`) para busca rápida. Este pipeline (Extrair, Transformar, Carregar) é um conceito fundamental da engenharia de dados, preparando os dados brutos para serem utilizados de forma eficiente.
+O projeto contém um pipeline clássico de mineração e engenharia de dados, perfeitamente exemplificado pelo sistema RAG.
+- **Mineração de Dados (Extração):**
+  - **Arquivo: `rag.py`**
+    - **Processo:** O sistema "mina" o diretório `knowledge/`, que atua como uma fonte de dados brutos e não estruturados. A função `_index_documents` lê todos os arquivos de texto (`.txt`, `.md`), extraindo seu conteúdo.
+- **Engenharia de Dados (Transformação e Carregamento/Indexação):**
+  - **Arquivo: `rag.py`**
+  - Processo (ETL - Extract, Transform, Load):
+  
+    **a. Extract:** O texto é extraído dos arquivos, como descrito acima.
+
+    **b. Transform:** O texto bruto é "transformado" em uma representação numérica útil. O modelo `SentenceTransformer` é aplicado a cada documento para convertê-lo em um embedding vetorial.
+
+    **c. Load:** Os embeddingsLoad (Indexação):** Os embeddings gerados são carregados e armazenados na memória (`self.doc_embeddings`) em um formato otimizado (tensores do PyTorch), prontos para serem consultados rapidamente durante as buscas por similaridade.
+
+#### 3.3. Processamento de Linguagem Natural (PLN)
+
+O PLN é o campo central que rege todo o projeto, permitindo que a máquina compreenda e gere linguagem humana.
+- **Compreensão de Linguagem Natural (NLU):** É o processo de "entrada".
+  - **Voz para Texto:** No modo de voz, o `stt.py` utiliza a biblioteca `SpeechRecognition` para capturar a fala do usuário e transcrevê-la para texto. Este é o primeiro passo da NLU.
+  - **Texto para Análise de Intenção:** O texto do usuário (seja digitado ou transcrito) é analisado em múltiplos estágios. O `jarvis.py` orquestra essa análise para decidir se a intenção é fazer uma pergunta geral, buscar na web, ou extrair um fato para a memória.
+- **Geração de Linguagem Natural (NLG):** É o processo de "saída".
+  - **AnáliseGeração da Resposta:** O "cérebro" do projeto, o LLM `meta-llama/Meta-Llama-3-8B-Instruct` chamado através do `nlp_client.py`, é o principal responsável pela NLG. Ele recebe um prompt complexo (com contexto, memória, resultados de busca) e gera uma resposta coesa e em linguagem natural.
+  - **Texto para Voz:** No modo de voz, o `tts.py` utiliza motores como pyttsx3 ou `eSpeak-ng` para converter a resposta em texto gerada pelo LLM em áudio, completando o ciclo de interação.
+
+#### 3.4. Aprendizado de Máquina (Machine Learning)
+
+O projeto não treina modelos do zero, mas faz uso intensivo de modelos de aprendizado de máquina pré-treinados para diferentes tarefas especializadas.
+- **Modelo de Linguagem Generativo (LLM):**
+  - **Arquivo: `nlp_client.py`**
+  - **Modelo:** `meta-llama/Meta-Llama-3-8B-Instruct`
+  - **Uso:** É o modelo de ML mais importante. Ele executa tarefas de raciocínio, geração de texto, resumo de informações (dos resultados de busca) e tomada de decisão (no `decide_on_tool`).
+- **Modelo de Embedding de Sentenças:**
+  - **Arquivo: 'rag.py'**
+  - **Modelo:** `sentence-transformers/all-MiniLM-L6-v2`
+  - **Uso:** Este modelo é especializado em uma tarefa: transformar texto em embeddings (vetores numéricos). Ele é a base da busca semântica, permitindo que o Jarvis encontre documentos na sua base de conhecimento (`knowledge/`) com base no significado, e não apenas em palavras-chave.
+- **Modelo de Classificação de Texto (Análise de Sentimentos):**
+  - **Arquivo:** `sentiment.py`
+  - **Modelo:** `cardiffnlp/twitter-roberta-base-sentiment-latest`
+  - **Uso:** Este é um modelo de classificação. Ele recebe o prompt do usuário e o classifica em uma de três categorias: `positivo`, `negativo` ou `neutro`. O resultado é usado para dar contexto emocional ao LLM principal.
+
+#### 3.5. Análise de Dados e de Sentimentos
+
+A análise de dados no Jarvis ocorre em tempo real para cada interação, com o objetivo de enriquecer o contexto do LLM.
+- **Análise de Sentimentos:**
+  - **Arquivo:** 'sentiment.py'
+  - **Processo:** Como descrito na seção de ML, o prompt do usuário é analisado para determinar seu tom emocional.
+  - **Impacto:** O resultado (`positivo`, `negativo`, `neutro`) é explicitamente adicionado ao prompt enviado ao LLM principal no `jarvis.py` (dentro de `_enrich_prompt_with_context`), permitindo que o Jarvis module suas respostas. Por exemplo, ele pode ser mais empático a um sentimento negativo.
+- **Análise de Dados em Tempo Real (Web Search):**
+  - **Arquivos:** `jarvis.py`, `nlp_client.py`, `web_search.py`
+  - **Processo:** Este é um ciclo de análise de dados:
+    **a. Análise de Necessidade:** A função `decide_on_tool` em nlp_client.py analisa o prompt do usuário para determinar se ele contém uma pergunta que requer dados externos e atuais.
+    **b. Coleta de Dados:** Se necessário, o `web_search.py` coleta dados brutos da internet.
+    **c. Análise e Síntese:** O `jarvis.py` envia esses dados brutos para o LLM com a instrução de analisá-los, sintetizá-los e formular uma resposta coesa e bem estruturada para a pergunta original do usuário. Isso transforma dados não estruturados da web em uma resposta analisada e útil.
 
 
 ### 4. Análise dos Módulos Principais
