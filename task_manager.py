@@ -1,8 +1,5 @@
 """
 Módulo para gerenciar o estado de tarefas de longo prazo.
-
-Permite que o Jarvis inicie, pause, retome e salve o progresso de
-tarefas complexas que duram múltiplas interações ou sessões.
 """
 
 import json
@@ -32,8 +29,13 @@ class TaskManager:
 
     def _save_tasks(self):
         """Salva o dicionário de tarefas no arquivo JSON."""
-        with open(self.task_file, 'w', encoding='utf-8') as f:
-            json.dump(self.tasks, f, indent=2, ensure_ascii=False)
+        try:
+            with open(self.task_file, 'w', encoding='utf-8') as f:
+                json.dump(self.tasks, f, indent=2, ensure_ascii=False)
+            # --- DEBUGGING ADICIONADO ---
+            print(f"[TaskManager] Estado das tarefas salvo com sucesso em '{self.task_file}'")
+        except Exception as e:
+            print(f"ERRO [TaskManager]: Falha ao salvar o arquivo de tarefas: {e}")
 
     def start_task(self, task_name: str, initial_prompt: str):
         """Inicia uma nova tarefa ou retoma uma existente."""
@@ -51,11 +53,11 @@ class TaskManager:
             "ultimo_update": datetime.now().isoformat()
         }
         self.tasks[task_name] = new_task_state
-        self._save_tasks()
+        self._save_tasks() # Garante que a nova tarefa seja salva imediatamente
         return new_task_state
 
     def update_task_history(self, user_input: str, assistant_output: str):
-        """Adiciona uma interação ao histórico da tarefa ativa."""
+        """Adiciona uma interação ao histórico da tarefa ativa e salva."""
         if not self.active_task:
             return
         
@@ -64,26 +66,23 @@ class TaskManager:
             task["historico"].append({"role": "user", "content": user_input})
             task["historico"].append({"role": "assistant", "content": assistant_output})
             task["ultimo_update"] = datetime.now().isoformat()
-            self._save_tasks()
+            self._save_tasks() # Salva a cada atualização
 
     def add_feedback(self, feedback: str):
-        """Adiciona um feedback do usuário à tarefa ativa."""
-        if not self.active_task:
-            return
-        
+        """Adiciona um feedback do usuário à tarefa ativa e salva."""
+        if not self.active_task: return
         task = self.tasks.get(self.active_task)
         if task:
             task["feedback_usuario"].append(feedback)
-            task["ultimo_update"] = datetime.now().isoformat()
             self._save_tasks()
             print(f"[TaskManager] Feedback adicionado à tarefa '{self.active_task}': {feedback}")
 
     def pause_task(self):
-        """Pausa a tarefa ativa (apenas limpa o estado ativo na memória)."""
+        """Pausa a tarefa ativa, garantindo que o estado seja salvo."""
         if self.active_task:
-            print(f"[TaskManager] Tarefa '{self.active_task}' pausada e salva.")
+            print(f"[TaskManager] Tarefa '{self.active_task}' pausada.")
+            self._save_tasks() # Garante um último salvamento
             self.active_task = None
-            # Os dados já são salvos a cada update, então não é preciso salvar aqui.
             
     def get_active_task_state(self):
         """Retorna o estado completo da tarefa ativa."""

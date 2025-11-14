@@ -10,7 +10,7 @@ from commands import CommandHandler
 from memory import LongTermMemory
 from sentiment import SentimentAnalyzer
 from web_search import search_web
-from task_manager import TaskManager # Importa o Gerenciador de Tarefas
+from task_manager import TaskManager
 
 load_dotenv()
 
@@ -25,7 +25,8 @@ class Jarvis:
         self.command_handler = CommandHandler()
         self.memory = LongTermMemory()
         self.sentiment_analyzer = SentimentAnalyzer()
-        self.task_manager = TaskManager() # Inicializa o Gerenciador de Tarefas
+        self.task_manager = TaskManager()
+        self.conversation_history = []
         print("[Jarvis] Assistente inicializado e pronto.")
 
     def _learn_from_interaction(self, user_prompt):
@@ -40,51 +41,69 @@ class Jarvis:
         """
         self._learn_from_interaction(prompt)
 
-        # Etapa 1: Decide a ferramenta/ação a ser tomada
-        full_context_history = self.task_manager.get_active_task_state() or self.conversation_history
-        tool_decision = self.nlp_client.decide_on_tool(prompt, full_context_history)
+        context_for_decision = self.task_manager.get_active_task_state() or self.conversation_history
+        tool_decision = self.nlp_client.decide_on_tool(prompt, context_for_decision)
+        
+        if not isinstance(tool_decision, dict):
+            tool_decision = {"tool": "none"}
+            
         chosen_tool = tool_decision.get("tool", "none")
 
-        # Etapa 2: Executa meta-comandos de gerenciamento de tarefas
+        response = ""
+
         if chosen_tool == "start_task":
-            task_name = tool_decision.get("task_name", "Tarefa sem nome")
+            task_name = tool_decision.get("task_name", prompt)
             self.task_manager.start_task(task_name, prompt)
             response = f"Ok, vamos começar a tarefa: '{task_name}'. Qual é o primeiro passo ou a primeira pergunta?"
             self.task_manager.update_task_history(prompt, response)
-            return response
         
-        if chosen_tool == "pause_task":
+        elif chosen_tool == "pause_task":
             self.task_manager.pause_task()
-            return "Ok, tarefa pausada. Podemos continuar quando você quiser."
+            response = "Ok, tarefa pausada. Podemos continuar quando você quiser."
 
-        if chosen_tool == "resume_task":
-            # Tenta retomar a última tarefa ativa (ou a mais recente)
+        elif chosen_tool == "resume_task":
             if self.task_manager.tasks:
                 latest_task = max(self.task_manager.tasks, key=lambda t: self.task_manager.tasks[t]['ultimo_update'])
                 self.task_manager.start_task(latest_task, "")
-                return f"Ok, retomando a tarefa '{latest_task}'. Onde paramos?"
-            return "Não há nenhuma tarefa para retomar."
-
-        # Se uma tarefa estiver ativa, todo o contexto vem dela
-        active_task = self.task_manager.get_active_task_state()
-        if active_task:
-            print(f"[Jarvis] Continuando a tarefa ativa: '{self.task_manager.active_task}'")
-            # O prompt para o LLM agora inclui o histórico da tarefa
-            task_history = active_task.get("historico", [])
-            response = self.nlp_client.generate(prompt, conversation_history=task_history)
-            self.task_manager.update_task_history(prompt, response)
-            return response
-
-        # --- Fluxo Padrão (se nenhuma tarefa estiver ativa) ---
-        rag_answer = self.rag.answer_with_rag(prompt)
-        if rag_answer:
-            # ... (lógica do RAG)
-            pass
+                response = f"Ok, retomando a tarefa '{latest_task}'. Onde paramos?"
+            else:
+                response = "Não há nenhuma tarefa para retomar."
         
-        # ... (lógica de busca na web e conversação geral) ...
+        else:
+            active_task = self.task_manager.get_active_task_state()
+            if active_task:
+                print(f"[Jarvis] Continuando a tarefa ativa: '{self.task_manager.active_task}'")
+                task_history = active_task.get("historico", [])
+                response = self.nlp_client.generate(prompt, conversation_history=task_history)
+                self.task_manager.update_task_history(prompt, response)
+            else:
+                rag_answer = self.rag.answer_with_rag(prompt)
+                if rag_answer:
+                    response = f"(Com base no meu conhecimento local)\n{rag_answer}"
+                else:
+                    search_query = tool_decision.get("query") if chosen_tool == "web_search" else None
+                    if search_query:
+                        print(f"[Jarvis] Decidi pesquisar na web sobre: '{search_query}'")
+                        search_results = search_web(search_query)
+                        final_prompt = (
+                            f"Com base nos resultados da pesquisa, responda à pergunta: {prompt}\n\n"
+                            f"--- Resultados da Pesquisa ---\n{search_results}"
+                        )
+                        response = self.nlp_client.generate(prompt=final_prompt, conversation_history=self.conversation_history)
+                    else:
+                        sentiment = self.sentiment_analyzer.analyze(prompt)
+                        relevant_facts = self.memory.get_relevant_facts(prompt)
+                        sentiment_context = f"O sentimento do usuário parece ser {sentiment}."
+                        memory_context = ""
+                        if relevant_facts:
+                            memory_context = "\n\nFatos relevantes da memória: " + ", ".join(relevant_facts)
+                        
+                        final_prompt = f"Contexto: {sentiment_context}{memory_context}\n\nPergunta: {prompt}"
+                        response = self.nlp_client.generate(prompt=final_prompt, conversation_history=self.conversation_history)
+
+        if not self.task_manager.get_active_task_state():
+            self.conversation_history.append({"role": "user", "content": prompt})
+            self.conversation_history.append({"role": "assistant", "content": response})
         
-        # Este é um stub, o fluxo completo precisaria ser reimplementado aqui
-        response = self.nlp_client.generate(prompt, conversation_history=self.conversation_history)
-        self.conversation_history.append({"role": "user", "content": prompt})
-        self.conversation_history.append({"role": "assistant", "content": response})
-        return response
+        command_response = self.command_handler.handle(response)
+        return command_response if command_response else response
