@@ -1,0 +1,1 @@
+Kraven, o Caçador (Sergei Kravinoff): Um caçador de renome mundial que busca provar que é o maior caçador do planeta. Ele ingere poções místicas que lhe dão força, velocidade e sentidos aprimorados. Sua obsessão é caçar a presa mais perigosa de todas: o Homem-Aranha, não para matá-lo, mas para superá-lo e provar sua superioridade.

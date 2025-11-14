@@ -1,0 +1,1 @@
+Doutor Destino (Victor von Doom): Monarca da Latvéria, um gênio científico e um dos feiticeiros mais poderosos do universo. Combina tecnologia avançada com magia negra. É o arqui-inimigo do Quarteto Fantástico e busca dominar o mundo para impor sua própria visão de ordem e paz.

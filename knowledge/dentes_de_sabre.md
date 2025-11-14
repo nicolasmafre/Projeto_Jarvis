@@ -1,0 +1,1 @@
+Dentes-de-Sabre (Victor Creed): Um mutante com fator de cura, sentidos aguçados, garras e presas, muito similar a Wolverine. No entanto, ele é dominado por seus instintos bestiais e sádicos. É o arqui-inimigo de Wolverine, com uma rivalidade sangrenta que dura décadas, muitas vezes caçando-o em seus aniversários apenas por prazer.

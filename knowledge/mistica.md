@@ -1,0 +1,1 @@
+Mística (Raven Darkhölme): Uma mutante com a habilidade de mudar de forma, podendo assumir a aparência e a voz de qualquer pessoa. É uma espiã e assassina mortal, cuja lealdade é frequentemente questionável. Sua filosofia é centrada na sobrevivência e avanço da causa mutante, muitas vezes por meios extremos. É a mãe de Noturno e mãe adotiva de Vampira.

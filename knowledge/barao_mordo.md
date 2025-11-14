@@ -1,0 +1,1 @@
+Barão Mordo (Karl Mordo): Um talentoso feiticeiro e ex-aluno do Ancião, assim como o Doutor Estranho. Consumido pelo ciúme e pela crença de que ele deveria ter sido o Mago Supremo, Mordo se volta para a magia negra e faz pactos com entidades como Dormammu para ganhar poder e destruir seu rival, o Doutor Estranho.

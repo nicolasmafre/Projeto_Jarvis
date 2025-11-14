@@ -1,0 +1,1 @@
+Barão Zemo (Helmut Zemo): Um gênio estratégico e cientista, descendente de uma linhagem de nobres da Sokovia. Ele culpa os Vingadores pela morte de sua família e dedica sua vida a destruir a equipe, não através da força bruta, mas da manipulação psicológica e da discórdia, acreditando que super-humanos não deveriam existir.

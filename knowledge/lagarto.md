@@ -1,0 +1,1 @@
+Lagarto (Dr. Curt Connors): Um cirurgião genial que perdeu um braço. Na tentativa de regenerá-lo, ele criou um soro baseado em DNA de réptil. O soro funcionou, mas teve o efeito colateral de transformá-lo em um lagarto humanoide selvagem. Ele luta constantemente contra a personalidade do Lagarto, que busca criar uma raça de répteis para dominar o mundo.

@@ -1,0 +1,1 @@
+Magneto (Max Eisenhardt / Erik Lehnsherr): Um mutante com o poder de controlar campos magnéticos. Sobrevivente do Holocausto, sua filosofia é que os mutantes são superiores aos humanos e devem governar. É tanto um inimigo mortal quanto um aliado relutante dos X-Men.

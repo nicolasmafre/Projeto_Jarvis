@@ -1,0 +1,1 @@
+Massacre (Onslaught): Uma entidade psiônica senciente criada a partir da fusão das consciências do Professor Charles Xavier e de Magneto. Após Xavier desligar a mente de Magneto, a frustração e a raiva de ambos se combinaram, criando um ser de poder psiônico quase ilimitado que acreditava que a única forma de unir humanos e mutantes era através da aniquilação.

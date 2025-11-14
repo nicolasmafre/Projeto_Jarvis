@@ -1,0 +1,1 @@
+Drax, o Destruidor: Um guerreiro cuja família foi morta por Thanos. Em busca de vingança, sua consciência foi colocada em um corpo artificialmente criado com o único propósito de destruir Thanos. Possui superforça e durabilidade, e é conhecido por sua interpretação literal de todas as frases, o que o torna incapaz de entender metáforas.

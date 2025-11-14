@@ -1,0 +1,1 @@
+Soldado Invernal (Bucky Barnes): O melhor amigo de Steve Rogers, que aparentemente morreu na Segunda Guerra Mundial. Ele foi encontrado pela HIDRA, que fez lavagem cerebral nele e substituiu seu braço perdido por um braço biônico, transformando-o em seu assassino de elite por décadas. Após ser salvo pelo Capitão América, ele luta para se redimir de seu passado.

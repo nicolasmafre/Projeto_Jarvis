@@ -1,0 +1,1 @@
+Vespa (Janet van Dyne): Uma das fundadoras dos Vingadores e quem deu o nome à equipe. Usando as Partículas Pym, ela pode encolher, voar com asas bio-sintéticas e disparar "ferrões" de energia bioelétrica. É uma designer de moda talentosa e uma líder subestimada, tendo liderado os Vingadores em várias ocasiões.

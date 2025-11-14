@@ -1,0 +1,1 @@
+Groot: Um colosso floral do Planeta X. Sua espécie se comunica através de uma linguagem complexa que soa como "Eu sou Groot" para a maioria das outras raças. Possui superforça e a capacidade de regenerar seu corpo a partir de um único galho. É o parceiro inseparável e "músculo" de Rocket Raccoon.

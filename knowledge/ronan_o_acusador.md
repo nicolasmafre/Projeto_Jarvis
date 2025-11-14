@@ -1,0 +1,1 @@
+Ronan, o Acusador: Um membro radical da raça alienígena Kree e um oficial de alta patente do Império Kree. Como Acusador Supremo, ele age como juiz, júri e executor. É um fanático que adere estritamente às antigas leis Kree e despreza outras raças, como os Xandarianos e os Skrulls. Empunha a "Arma Universal".

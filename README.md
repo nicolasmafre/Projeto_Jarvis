@@ -26,6 +26,7 @@ Este projeto implementa um assistente de linguagem natural multifacetado, inspir
 ---
 1. [Guia de Estudo e Recursos do Projeto Jarvis](LEARNING_RESOURCES.md)
 2. [Prompt Templates para o Jarvis](prompt_templates.md)
+3. [A Arquitetura de Memória Dupla do Projeto Jarvis](MEMORY_ARCHITECTURE.md)
 
 
 ## Telas do projeto
@@ -182,6 +183,12 @@ A análise de dados no Jarvis ocorre em tempo real para cada interação, com o 
 
 
 ### 4. Análise dos Módulos Principais
+ - **Arquitetura de Agente Multi-Modelo:** O Jarvis agora opera como um agente inteligente, orquestrando múltiplos LLMs. Ele usa um modelo geral (`Llama-3-8B`) para entender a conversa e um modelo especialista (`Phi-3-mini`) para fornecer respostas educacionais de alta qualidade, escolhendo a melhor ferramenta para cada tarefa.
+ - **Pesquisa na Web em Tempo Real:** Decide autonomamente quando uma pergunta requer informações atuais, busca na web e sintetiza os resultados.
+ - **Análise de Sentimentos:** Detecta o sentimento do usuário para adaptar o tom de suas respostas.
+ - **RAG com Busca Semântica:** Usa `sentence-transformers` para uma busca por significado nos seus documentos locais.
+ - **Memória de Longo Prazo:** Aprende com suas conversas, armazenando fatos em `memory/memory.json`.
+ - **Múltiplas Interfaces:** GUI de Desktop (Flet), CLI (Voz/Texto) e Web (Flask/HTMX).
 
 ---
 #### 4.1. `app.py`: Interfaces e Orquestração
@@ -425,5 +432,13 @@ O `pytest` irá automaticamente descobrir e executar todos os arquivos na pasta 
 ---
 
 ## 🚨 Segurança e Git: Não Envie Seus Segredos! 🚨
+
+ - **Gerenciador de Tarefas (Task Manager):** O Jarvis agora pode gerenciar tarefas de longo prazo. Ele pode iniciar uma "aula" ou "projeto", salvar o progresso, ser pausado e retomar exatamente de onde parou, mesmo após ser reiniciado.
+ - **Arquitetura de Agente Multi-Modelo:** Orquestra múltiplos LLMs, usando `Llama-3-8B` para decisões e `Phi-3-mini` para respostas educacionais.
+ - **Pesquisa na Web em Tempo Real:** Decide autonomamente quando buscar informações atuais na internet.
+ - **Análise de Sentimentos:** Detecta o sentimento do usuário para adaptar o tom das respostas.
+ - **RAG com Busca Semântica:** Usa `sentence-transformers` para busca por significado em documentos locais.
+ - **Memória de Longo Prazo:** Aprende fatos sobre o usuário para personalizar a interação.
+ - **Múltiplas Interfaces:** GUI de Desktop (Flet), CLI (Voz/Texto) e Web (Flask/HTMX).
 
 O arquivo **`.gitignore`** está configurado para ignorar o arquivo `.env`. Isso é uma proteção vital para impedir que sua chave de API seja enviada para o GitHub. **Nunca** remova o `.env` do `.gitignore`.

@@ -1,1 +1,1 @@
-Luke Cage (Carl Lucas): Ele possui superforça e pele à prova de balas, resultantes de um experimento que deu errado na prisão. Luke nasceu e cresceu no Harlem.
+Luke Cage: Um ex-presidiário que, após ser submetido a um experimento sabotado, ganhou pele impenetrável e superforça. Ele usa seus poderes como um "Herói de Aluguel", protegendo os cidadãos do Harlem e de Nova York. É conhecido por seu forte código moral e seu bordão, "Sweet Christmas!".

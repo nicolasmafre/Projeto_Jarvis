@@ -1,0 +1,1 @@
+Falcão (Sam Wilson): Um ex-paraquedista da Força Aérea que usa um par de asas mecânicas avançadas para voar em alta velocidade e com grande agilidade. Ele também tem um link telepático com seu pássaro de estimação, Asa Vermelha. É um dos amigos mais leais do Capitão América e, eventualmente, assume o manto do próprio Capitão.

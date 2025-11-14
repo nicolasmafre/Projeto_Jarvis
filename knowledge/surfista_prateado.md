@@ -1,0 +1,1 @@
+Surfista Prateado (Norrin Radd): Um astrônomo do planeta Zenn-La que, para salvar seu mundo da destruição por Galactus, concordou em se tornar seu arauto. Imbuído com o Poder Cósmico, ele viaja pelo universo em sua prancha prateada, procurando planetas para Galactus consumir. Ele eventualmente se rebela contra seu mestre para proteger a Terra.

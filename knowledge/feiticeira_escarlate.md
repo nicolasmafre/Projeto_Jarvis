@@ -1,0 +1,1 @@
+Feiticeira Escarlate (Wanda Maximoff): Uma das usuárias de magia mais poderosas do universo. Seus poderes, originalmente mutantes e depois aprimorados por magia do caos, permitem que ela altere a própria realidade. Suas habilidades são instáveis e ligadas às suas emoções, o que a torna tanto uma heroína poderosa quanto uma ameaça potencial de nível global.

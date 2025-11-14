@@ -1,0 +1,1 @@
+Doutor Estranho (Stephen Strange): Um neurocirurgião arrogante que, após um acidente que danificou suas mãos, buscou uma cura no Oriente e se tornou o Mago Supremo da Terra. É o principal protetor do planeta contra ameaças místicas e dimensionais, utilizando feitiços poderosos e artefatos como o Olho de Agamotto e o Manto da Levitação.

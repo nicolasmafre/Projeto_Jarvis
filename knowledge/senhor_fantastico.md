@@ -1,0 +1,1 @@
+Senhor Fantástico (Reed Richards): O líder do Quarteto Fantástico e uma das mentes mais brilhantes do planeta. Após a exposição a raios cósmicos, seu corpo ganhou a capacidade de se esticar e se moldar em qualquer forma. Sua verdadeira força, no entanto, é seu intelecto genial, que ele usa para resolver problemas que ameaçam o universo.

@@ -1,0 +1,1 @@
+Homem-Púrpura (Zebediah Killgrave): Um ex-espião que, após ser exposto a um produto químico, ganhou a habilidade de controlar a vontade das pessoas através de feromônios que sua pele libera. Qualquer pessoa em sua proximidade é forçada a obedecer a qualquer comando verbal seu. É um vilão manipulador e sádico, e o principal antagonista de Jessica Jones.

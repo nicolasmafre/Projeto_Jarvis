@@ -1,0 +1,1 @@
+Hela: A Deusa da Morte de Asgard e governante de Hel e Niflheim. Filha primogênita de Odin, ela foi aprisionada por sua ambição e sede de poder. Com o poder de matar com um simples toque e de manifestar armas do nada, ela busca reclamar o trono de Asgard que acredita ser seu por direito.

@@ -1,0 +1,1 @@
+Venom: Uma entidade alienígena simbiótica da raça Klyntar. Ele precisa de um hospedeiro para sobreviver, concedendo-lhe poderes incríveis, como força e agilidade aprimoradas, e a capacidade de mimetizar os poderes do Homem-Aranha. Sua relação com seus hospedeiros, especialmente Eddie Brock, é complexa, oscilando entre vilão, anti-herói e protetor letal.

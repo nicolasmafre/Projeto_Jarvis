@@ -1,0 +1,1 @@
+Mysterio (Quentin Beck): Um mestre dos efeitos especiais e ilusionismo que trabalhava na indústria cinematográfica. Frustrado por sua falta de reconhecimento, ele usa sua genialidade em ilusões, hipnose e robótica para cometer crimes e enganar seus inimigos, especialmente o Homem-Aranha, fazendo-os duvidar de sua própria sanidade.

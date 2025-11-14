@@ -1,0 +1,1 @@
+Coisa (Ben Grimm): Um ex-piloto de testes e o coração do Quarteto Fantástico. A exposição a raios cósmicos transformou seu corpo em uma rocha laranja super-densa, concedendo-lhe força e durabilidade sobre-humanas. Apesar de sua aparência monstruosa, ele tem um coração de ouro e um senso de humor melancólico. Seu bordão é "Tá na hora do pau!" ("It's clobberin' time!").

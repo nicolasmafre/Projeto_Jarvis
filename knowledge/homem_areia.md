@@ -1,0 +1,1 @@
+Homem-Areia (Flint Marko / William Baker): Um criminoso que, ao fugir da polícia, entra em um local de testes nucleares e tem seu corpo fundido com areia radioativa. Ele ganha a habilidade de transformar seu corpo em areia, podendo mudar de forma, densidade e se regenerar. Suas motivações são frequentemente ligadas a ajudar sua filha doente.

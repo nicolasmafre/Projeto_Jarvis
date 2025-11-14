@@ -1,0 +1,1 @@
+Doutor Octopus (Otto Octavius): Um físico nuclear genial que, após um acidente de laboratório, teve quatro tentáculos mecânicos fundidos ao seu corpo. Os tentáculos são extremamente poderosos e controlados telepaticamente. É um dos inimigos mais inteligentes e persistentes do Homem-Aranha.

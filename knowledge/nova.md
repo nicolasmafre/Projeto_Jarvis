@@ -1,0 +1,1 @@
+Nova (Richard Rider): Um estudante do ensino médio que foi escolhido aleatoriamente pelo último membro sobrevivente da Tropa Nova de Xandar para herdar seus poderes. Através de seu capacete, ele pode acessar a Força Nova, que lhe concede voo, superforça, durabilidade e a capacidade de projetar energia. Ele se torna um dos maiores heróis cósmicos do universo.

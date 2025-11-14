@@ -1,0 +1,1 @@
+Aniquilador (Annihilus): O governante da Zona Negativa, uma dimensão de antimatéria. É um ser insectoide paranoico e tirânico, cujo único objetivo é a expansão de seu império e a aniquilação de toda a vida no universo de matéria positiva, que ele vê como uma ameaça. Seu poder vem do Cetro de Controle Cósmico.

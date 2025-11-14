@@ -1,0 +1,1 @@
+Abutre (Adrian Toomes): Um engenheiro eletrônico brilhante que inventou um traje eletromagnético que lhe permite voar e lhe concede força aprimorada. Após ser traído por seu sócio, ele se voltou para o crime, usando seu traje para roubar tecnologia e cometer assaltos aéreos. É um dos inimigos mais antigos do Homem-Aranha.

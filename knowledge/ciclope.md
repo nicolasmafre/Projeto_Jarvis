@@ -1,1 +1,1 @@
-Ciclope (Scott Summers): Possui raios ópticos de energia.
+Ciclope (Scott Summers): O primeiro dos X-Men e seu líder de campo por muitos anos. É um mutante que projeta rajadas de energia concussiva incontroláveis de seus olhos, forçando-o a usar um visor de quartzo-rubi para controlar o poder. É um estrategista brilhante e um líder dedicado, embora muitas vezes rígido.

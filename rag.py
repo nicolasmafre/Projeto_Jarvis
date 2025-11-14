@@ -13,27 +13,16 @@ from sentence_transformers import SentenceTransformer, util
 class Rag:
     """
     Gerencia a indexação e a busca em uma base de conhecimento local.
-
-    Utiliza um modelo SentenceTransformer para converter documentos e perguntas
-    em embeddings vetoriais, permitindo a busca por significado em vez de
-    apenas palavras-chave.
     """
     def __init__(self, knowledge_dir="knowledge", model_name='all-MiniLM-L6-v2'):
         """
         Inicializa o sistema RAG.
-
-        Carrega o modelo de embedding e indexa os documentos encontrados
-        no diretório de conhecimento.
-
-        Args:
-            knowledge_dir (str): O caminho para a pasta com os arquivos de conhecimento.
-            model_name (str): O nome do modelo SentenceTransformer a ser usado.
         """
         self.knowledge_dir = knowledge_dir
         self.documents = []
         self.doc_embeddings = None
         
-        print("[RAG] Carregando o modelo de embedding... (Isso pode levar um momento na primeira vez)")
+        print("[RAG] Carregando o modelo de embedding...")
         try:
             self.model = SentenceTransformer(model_name)
             self._index_documents()
@@ -60,22 +49,21 @@ class Rag:
         if doc_texts:
             self.documents = doc_texts
             self.doc_embeddings = self.model.encode(self.documents, convert_to_tensor=True)
-            print(f"[RAG] {len(self.documents)} documentos indexados com sucesso usando SentenceTransformer.")
+            print(f"[RAG] {len(self.documents)} documentos indexados com sucesso.")
         else:
             print("[RAG] Nenhum documento encontrado na pasta 'knowledge'.")
 
-    def answer_with_rag(self, question, similarity_threshold=0.5):
+    def answer_with_rag(self, question, similarity_threshold=0.7):
         """
         Encontra o documento mais relevante para uma pergunta.
 
         Args:
             question (str): A pergunta do usuário.
-            similarity_threshold (float): O limiar de similaridade de cosseno para
-                                          considerar um documento como relevante.
+            similarity_threshold (float): O limiar de similaridade de cosseno.
+                                          Aumentado para 0.7 para evitar falsos positivos.
 
         Returns:
-            str | None: O texto do documento mais relevante, ou None se nenhum
-                        documento atingir o limiar de similaridade.
+            str | None: O texto do documento mais relevante, ou None.
         """
         if self.doc_embeddings is None or not self.documents:
             return None

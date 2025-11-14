@@ -1,0 +1,1 @@
+Rocket Raccoon: Um guaxinim geneticamente modificado e aprimorado ciberneticamente. É um gênio da engenharia, um piloto excepcional e um especialista em armas de grosso calibre. Apesar de sua aparência, ele é um mercenário cínico e temperamental, mas leal aos seus amigos nos Guardiões da Galáxia, especialmente seu parceiro Groot.

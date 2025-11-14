@@ -1,0 +1,1 @@
+Mandarim: Um gênio científico e mestre em artes marciais. Seu poder principal vem dos Dez Anéis de Poder, artefatos de uma tecnologia alienígena avançada que ele encontrou. Cada anel concede um poder diferente, como rajadas de gelo, controle mental e desintegração de matéria. É um dos principais inimigos do Homem de Ferro.

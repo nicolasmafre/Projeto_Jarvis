@@ -1,0 +1,1 @@
+Treinador de Sonhos (Nightmare): Um demônio e governante da Dimensão dos Sonhos. Ele se alimenta do medo e da angústia que gera nos seres vivos enquanto eles dormem. Pode aprisionar a forma astral de uma pessoa em sua dimensão e torturá-la com seus piores pesadelos. É um inimigo recorrente do Doutor Estranho e do Motoqueiro Fantasma.

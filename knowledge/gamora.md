@@ -1,0 +1,1 @@
+Gamora: A última de sua espécie, ela foi adotada por Thanos e criada para ser a "mulher mais perigosa da galáxia". Treinada como uma assassina de elite, ela se rebelou contra seu pai adotivo e se juntou aos Guardiões da Galáxia, usando suas habilidades de combate incomparáveis para lutar pelo bem.

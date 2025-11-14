@@ -1,0 +1,1 @@
+Pantera Negra (T'Challa): O rei e protetor da nação africana tecnologicamente avançada de Wakanda. Seus poderes, concedidos pela "Erva em Forma de Coração", incluem força, velocidade e agilidade aprimoradas. Ele usa um traje de Vibranium que absorve e redistribui energia cinética. É um gênio tático e um dos homens mais inteligentes do mundo.

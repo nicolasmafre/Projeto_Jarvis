@@ -1,0 +1,1 @@
+Encantor (Amora): Uma das feiticeiras mais poderosas de Asgard, cuja magia se concentra na sedução e no controle mental. Ela usa sua beleza e seus feitiços para manipular homens e deuses para cumprir seus desejos. É frequentemente obcecada por Thor e vê outras mulheres, como Jane Foster e Sif, como rivais.

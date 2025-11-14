@@ -1,1 +1,1 @@
-Loki Laufeyson: O Deus da Trapaça, irmão adotivo de Thor. É um mestre em magia, ilusão e manipulação. Suas motivações são complexas, variando entre a busca por poder e a necessidade de autoafirmação.
+Loki: O Deus da Trapaça de Asgard, filho adotivo de Odin e irmão de Thor. É um mestre da feitiçaria, ilusão e manipulação. Suas ações são frequentemente motivadas por ciúmes de Thor e um desejo de provar seu valor, causando caos em Asgard e na Terra.

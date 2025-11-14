@@ -1,0 +1,1 @@
+Deadpool (Wade Wilson): O "Mercenário Tagarela". Um ex-soldado de forças especiais que, após ser diagnosticado com câncer terminal, se submeteu a um experimento que lhe deu um fator de cura acelerado, mas desfigurou sua pele e o deixou mentalmente instável. Ele é famoso por sua tendência a quebrar a quarta parede, falando diretamente com o público.
