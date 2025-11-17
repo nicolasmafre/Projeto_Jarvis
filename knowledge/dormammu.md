@@ -1,0 +1,1 @@
+Dormammu: O governante da Dimensão Sombria, uma entidade mística de poder quase ilimitado. É composto de pura energia mística e busca constantemente expandir seu domínio, absorvendo outras dimensões, incluindo a Terra. É o principal adversário do Doutor Estranho, o Mago Supremo.

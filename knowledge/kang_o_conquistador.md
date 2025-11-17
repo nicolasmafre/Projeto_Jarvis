@@ -1,0 +1,1 @@
+Kang, o Conquistador (Nathaniel Richards): Um déspota viajante do tempo, originário do século 31. Usando tecnologia futurista, ele viaja por diferentes eras e realidades para conquistar impérios. Sua complexa linha do tempo e suas múltiplas variantes (como Immortus e Rapaz de Ferro) o tornam um dos vilões mais confusos e perigosos dos Vingadores.

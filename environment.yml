@@ -1,6 +1,7 @@
 name: Projeto_Jarvis
 
 channels:
+  - pytorch
   - conda-forge
   - defaults
 
@@ -8,21 +9,33 @@ dependencies:
   # --- Versão do Python ---
   - python=3.10
 
-  # --- Pacotes Conda ---
-  # Dependências de sistema para áudio, mais confiável via Conda
+  # --- Pacotes Conda para performance e compatibilidade ---
+  - pytorch
+  - cpuonly # Remova esta linha se você tem uma GPU NVIDIA com CUDA configurado
   - pyaudio
 
-  # Bibliotecas principais do projeto
-  - scikit-learn
-  - flask
-  - requests
-  - python-dotenv
-  - pytest
-  - huggingface-hub
-
-  # --- Pacotes Pip ---
-  # Adiciona o pip para instalar pacotes que não estão no Conda
+  # --- Pacotes Pip para o resto das dependências ---
   - pip
   - pip:
+    # NLP e IA
+    - huggingface-hub
+    - sentence-transformers
+    - transformers
+
+    # Interfaces
+    - flet
+    - flask
+
+    # Áudio
     - pyttsx3
-    - SpeechRecognition
+    - speechrecognition
+
+    # Busca na Web
+    - ddgs
+
+    # Utilitários
+    - python-dotenv
+    - requests
+
+    # Testes
+    - pytest

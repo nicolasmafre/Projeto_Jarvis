@@ -1,0 +1,1 @@
+Punho de Ferro (Danny Rand): Após um acidente de avião no Himalaia, o jovem Danny Rand foi criado na cidade mística de K'un-Lun. Lá, ele se tornou um mestre em artes marciais e ganhou o poder do Punho de Ferro ao derrotar o dragão Shou-Lao, o Imortal. Ele pode canalizar sua energia espiritual (chi) em seu punho, tornando-o uma arma devastadora.

@@ -1,0 +1,1 @@
+Blade (Eric Brooks): Um "daywalker" (caminhante do dia). Sua mãe foi mordida por um vampiro durante seu nascimento, o que lhe concedeu todas as forças de um vampiro (força, velocidade, fator de cura) sem nenhuma de suas fraquezas, como aversão à luz solar. Ele dedica sua longa vida a caçar e exterminar vampiros. É um mestre em artes marciais e armas brancas.

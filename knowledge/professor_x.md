@@ -1,0 +1,1 @@
+Professor X (Charles Xavier): O telepata mais poderoso do mundo e o fundador dos X-Men. Ele dedica sua vida ao sonho de coexistência pacífica entre humanos e mutantes. Fundou o Instituto Xavier para Jovens Superdotados como um refúgio seguro para jovens mutantes aprenderem a controlar seus poderes e lutar por seu sonho.

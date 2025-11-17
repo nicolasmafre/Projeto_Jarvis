@@ -1,0 +1,1 @@
+Beyonder: Uma entidade cósmica quase onipotente de outra dimensão. Curioso sobre a natureza do desejo e do conflito, ele transportou heróis e vilões da Terra para um "Mundo de Batalha" para observá-los lutar, no evento conhecido como as Guerras Secretas. Seu poder é tão vasto que ele pode alterar a realidade com um pensamento.

@@ -1,0 +1,1 @@
+Capitão América (Steve Rogers): Um jovem franzino que, durante a Segunda Guerra Mundial, se submeteu a um experimento com o "Soro do Super-Soldado". Ele foi transformado no auge da forma física humana. É um mestre em táticas de combate e um líder nato. Seu escudo, feito de Vibranium, é sua principal arma e símbolo.

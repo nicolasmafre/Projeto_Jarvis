@@ -1,0 +1,1 @@
+Rei do Crime (Wilson Fisk): O mestre do submundo do crime de Nova York. Apesar de não ter superpoderes, possui força física e brutalidade no auge da capacidade humana. É um gênio do crime, manipulador e estrategista, controlando a cidade através de uma fachada de empresário legítimo. É um inimigo recorrente do Demolidor e do Homem-Aranha.

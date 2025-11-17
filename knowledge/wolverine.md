@@ -1,0 +1,1 @@
+Wolverine (James "Logan" Howlett): Um mutante com um poderoso fator de cura, sentidos animalescos aguçados, e seis garras ósseas retráteis em suas mãos. Seu esqueleto e garras foram fundidos com Adamantium, um metal indestrutível, tornando-o quase imortal e uma arma viva. É um membro icônico dos X-Men.

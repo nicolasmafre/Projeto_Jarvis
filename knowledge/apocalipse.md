@@ -1,0 +1,1 @@
+Apocalipse (En Sabah Nur): Um dos primeiros mutantes da história, nascido no antigo Egito. Acredita na sobrevivência do mais forte e busca usar sua vasta gama de poderes, incluindo imortalidade e controle molecular, para erradicar os fracos e garantir que apenas os mais poderosos governem o mundo.

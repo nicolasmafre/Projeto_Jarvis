@@ -1,0 +1,1 @@
+Mephisto: Um demônio extradimensional de poder imenso que governa uma dimensão de bolso que ele chama de "Inferno". Ele se alimenta da corrupção e do sofrimento, e seu principal método de operação é fazer pactos com mortais em troca de suas almas. É uma personificação do mal e da tentação no universo Marvel.

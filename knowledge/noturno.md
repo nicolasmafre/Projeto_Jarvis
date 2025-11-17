@@ -1,0 +1,1 @@
+Noturno (Kurt Wagner): Um mutante com uma aparência demoníaca (pele azul, cauda preênsil e três dedos em cada mão e pé), mas com uma fé católica devota. Seu principal poder é o teletransporte, que ele realiza passando brevemente por outra dimensão. É um acrobata incrível e um dos membros mais bondosos e compassivos dos X-Men.

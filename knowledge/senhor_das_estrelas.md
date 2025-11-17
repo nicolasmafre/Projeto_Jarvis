@@ -1,0 +1,1 @@
+Senhor das Estrelas (Peter Quill): Um aventureiro meio-humano, meio-Celestial que foi abduzido da Terra quando criança. Ele se torna o líder dos Guardiões da Galáxia. É um piloto e estrategista habilidoso, conhecido por seu walkman, seu senso de humor e seu profundo conhecimento da cultura pop dos anos 80.

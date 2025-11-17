@@ -1,0 +1,1 @@
+Justiceiro (Frank Castle): Um veterano de guerra altamente treinado cuja família foi morta no fogo cruzado de uma briga de gangues. A partir desse dia, ele declarou uma guerra de um homem só contra o crime. Operando fora da lei, ele usa táticas militares, tortura e força letal para punir os criminosos. É um dos anti-heróis mais brutais e complexos da Marvel.

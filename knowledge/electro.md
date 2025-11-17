@@ -1,0 +1,1 @@
+Electro (Max Dillon): Um eletricista que, enquanto trabalhava em um poste, foi atingido por um raio, o que lhe deu a capacidade de controlar a eletricidade. Ele pode absorver, armazenar e projetar vastas quantidades de energia elétrica, além de se mover através de correntes elétricas. É um inimigo clássico do Homem-Aranha.

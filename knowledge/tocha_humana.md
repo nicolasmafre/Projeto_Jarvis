@@ -1,0 +1,1 @@
+Tocha Humana (Johnny Storm): Membro do Quarteto Fantástico e irmão de Sue Storm. Após ser exposto a raios cósmicos, ele ganhou a habilidade de envolver seu corpo em chamas, voar e projetar bolas de fogo. É conhecido por sua personalidade impetuosa e seu grito de guerra, "Em chamas!" ("Flame on!").

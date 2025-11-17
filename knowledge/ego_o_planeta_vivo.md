@@ -1,0 +1,1 @@
+Ego, o Planeta Vivo: Um planeta com consciência própria, nascido na Galáxia Negra. É um Celestial, uma das entidades mais antigas e poderosas do universo. Com controle total sobre sua massa e forma, ele pode criar avatares e interagir com outros seres. Seu objetivo é a "Expansão", um plano para assimilar todos os mundos e se tornar a única forma de vida.

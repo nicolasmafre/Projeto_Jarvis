@@ -1,0 +1,1 @@
+Mercenário (Bullseye): Um assassino psicopata com uma habilidade sobrenatural de usar praticamente qualquer objeto como uma arma letal. Sua mira é perfeita. Ele não tem superpoderes, mas sua precisão e sadismo o tornam um dos inimigos mais perigosos e pessoais do Demolidor, sendo responsável pela morte de Elektra.

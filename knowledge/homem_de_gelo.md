@@ -1,0 +1,1 @@
+Homem de Gelo (Bobby Drake): Um dos cinco X-Men originais e um mutante de nível Ômega. Possui o poder da criocinese, permitindo-lhe baixar a temperatura para congelar a umidade do ar, criar gelo, e transformar seu próprio corpo em gelo sólido. Com o tempo, ele aprendeu a usar seus poderes de formas incrivelmente complexas e poderosas.

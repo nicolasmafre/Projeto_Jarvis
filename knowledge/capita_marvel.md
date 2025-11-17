@@ -1,0 +1,1 @@
+Capitã Marvel (Carol Danvers): Uma piloto da Força Aérea que, após um acidente envolvendo tecnologia Kree, teve seu DNA fundido com o do herói Mar-Vell. Ela ganhou poderes incríveis, incluindo superforça, voo e a capacidade de absorver e projetar energia. É uma das heroínas mais poderosas do universo, atuando como uma defensora cósmica.

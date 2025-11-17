@@ -1,0 +1,1 @@
+Homem-Aranha (Peter Parker): Um jovem que, após ser picado por uma aranha radioativa, ganha habilidades aracnídeas. Possui força, agilidade e reflexos sobre-humanos, a capacidade de aderir a superfícies e um "sentido de aranha" que o alerta do perigo. É conhecido por seu senso de humor e pelo lema "Com grandes poderes, vêm grandes responsabilidades".

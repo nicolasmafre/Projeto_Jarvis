@@ -1,0 +1,1 @@
+Vampira (Anna Marie): Uma mutante com a habilidade de absorver os poderes, memórias e força vital de qualquer pessoa que ela toque. Esse poder é uma bênção e uma maldição, pois a impede de ter contato físico com outros. Após absorver permanentemente os poderes da Miss Marvel original, ela ganhou superforça, voo e durabilidade. É uma figura central nos X-Men.

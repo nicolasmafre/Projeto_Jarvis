@@ -1,0 +1,1 @@
+Shuma-Gorath: Uma entidade extradimensional antiga e quase onipotente, pertencente a uma raça conhecida como "Muitos-Ângulos". É um ser de puro caos e horror cósmico, que governou a Terra em tempos pré-históricos. Seu poder é tão vasto que ele pode consumir dimensões inteiras, e representa uma ameaça de nível multiversal.

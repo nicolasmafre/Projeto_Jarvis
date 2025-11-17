@@ -1,0 +1,1 @@
+Jessica Jones: Uma ex-super-heroína que, após um encontro traumático com o vilão Homem-Púrpura, abandona a vida de heroína e abre sua própria agência de investigação particular. Possui superforça e durabilidade, mas seus maiores trunfos são sua inteligência e sua tenacidade como detetive. Lida com temas de trauma e estresse pós-traumático.

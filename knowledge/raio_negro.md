@@ -1,0 +1,1 @@
+Raio Negro (Blackagar Boltagon): O rei dos Inumanos, uma raça de humanos geneticamente alterados. Seu poder principal é sua voz hipersônica, que pode liberar uma onda de força concussiva devastadora com o menor sussurro. Por causa disso, ele vive em silêncio absoluto, comunicando-se telepaticamente com sua esposa, Medusa.

@@ -1,0 +1,1 @@
+Thor: O Deus do Trovão, príncipe do reino místico de Asgard e filho de Odin. É um dos seres mais poderosos do universo, com força, durabilidade e longevidade divinas. Empunha o martelo Mjolnir (e mais tarde o machado Stormbreaker), que lhe permite controlar o clima, voar e canalizar raios.

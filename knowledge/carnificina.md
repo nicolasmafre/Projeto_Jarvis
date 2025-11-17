@@ -1,0 +1,1 @@
+Carnificina (Cletus Kasady): Um simbionte descendente de Venom que se uniu ao psicopata e serial killer Cletus Kasady. O resultado é uma criatura de puro caos e sadismo, muito mais poderosa e instável que Venom. Carnificina não tem outro objetivo senão espalhar morte e destruição, acreditando que isso é a forma máxima de liberdade.

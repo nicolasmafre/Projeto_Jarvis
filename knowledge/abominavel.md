@@ -1,0 +1,1 @@
+Abominável (Emil Blonsky): Um agente da KGB que se expôs deliberadamente a uma dose maior de radiação gama do que a que transformou Bruce Banner. Ele se tornou uma criatura reptiliana gigantesca, ainda mais forte que o Hulk em seu estado normal, mas incapaz de reverter à sua forma humana. Ele mantém sua inteligência, mas é consumido pela inveja e ódio pelo Hulk.

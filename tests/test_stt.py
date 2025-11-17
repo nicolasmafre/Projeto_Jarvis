@@ -12,13 +12,15 @@ import speech_recognition as sr
 @pytest.fixture
 def mock_recognizer():
     """Fixture para mockar o Recognizer e o Microphone."""
-    with patch('speech_recognition.Recognizer') as MockRecognizer,
-         patch('speech_recognition.Microphone') as MockMicrophone:
-        
-        mock_recognizer_instance = MockRecognizer.return_value
-        mock_microphone_instance = MockMicrophone.return_value.__enter__.return_value
-        
-        yield mock_recognizer_instance, mock_microphone_instance
+    # --- A CORREÇÃO ESTÁ AQUI ---
+    # Aninha os 'with' para compatibilidade com Python 3.10+
+    with patch('speech_recognition.Recognizer') as MockRecognizer:
+        with patch('speech_recognition.Microphone') as MockMicrophone:
+            mock_recognizer_instance = MockRecognizer.return_value
+            mock_microphone_instance = MockMicrophone.return_value.__enter__.return_value
+            
+            yield mock_recognizer_instance, mock_microphone_instance
+    # --------------------------
 
 def test_stt_listen_success(mock_recognizer):
     """Testa o reconhecimento de fala bem-sucedido."""
@@ -28,7 +30,7 @@ def test_stt_listen_success(mock_recognizer):
     stt = STT()
     result = stt.listen()
 
-    mock_recognizer_instance.listen.assert_called_once_with(mock_microphone_instance)
+    mock_recognizer_instance.listen.assert_called_once_with(mock_microphone_instance, timeout=10)
     mock_recognizer_instance.recognize_google.assert_called_once()
     assert result == "Olá Jarvis"
 
