@@ -1,0 +1,1 @@
+Nick Fury: O superespião definitivo e ex-diretor da S.H.I.E.L.D. Um veterano da Segunda Guerra Mundial, sua longevidade é garantida pela "Fórmula do Infinito". É um mestre da espionagem, tática e manipulação, sempre operando nas sombras para proteger o mundo de ameaças que ninguém mais pode ver. Foi o idealizador da Iniciativa Vingadores.

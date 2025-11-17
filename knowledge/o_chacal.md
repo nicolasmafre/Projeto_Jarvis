@@ -1,0 +1,1 @@
+O Chacal (Miles Warren): Um professor de biologia de Peter Parker que era secretamente apaixonado por Gwen Stacy. Após a morte dela, ele enlouqueceu e se tornou um mestre da clonagem, culpando o Homem-Aranha. Ele é o responsável pela infame "Saga do Clone", criando clones de Peter Parker e Gwen Stacy para atormentar a vida do herói.

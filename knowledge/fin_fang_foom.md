@@ -1,0 +1,1 @@
+Fin Fang Foom: Um dragão alienígena do planeta Kakaranathara. Ele e sua raça chegaram à Terra séculos atrás com a intenção de conquistar o planeta. Possui superforça, durabilidade, a capacidade de voar e de cuspir uma névoa ácida. Frequentemente entra em conflito com o Homem de Ferro e outros heróis.

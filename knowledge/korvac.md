@@ -1,0 +1,1 @@
+Korvac (Michael Korvac): Um técnico de computação do século 31 de uma realidade alternativa que foi transformado em um ciborgue pela raça alienígena Badoon. Ele consegue absorver o Poder Cósmico da estação espacial de Galactus, tornando-se uma entidade de poder divino. Viaja para a Terra com a intenção de transformá-la em uma utopia sob seu controle absoluto.

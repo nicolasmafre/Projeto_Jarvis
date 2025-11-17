@@ -1,0 +1,1 @@
+Galactus: Uma entidade cósmica primordial que consome planetas para sustentar sua energia vital. Não é mau no sentido tradicional, mas sim uma força da natureza, essencial para o equilíbrio do universo. Sua chegada é anunciada por seu arauto, como o Surfista Prateado.

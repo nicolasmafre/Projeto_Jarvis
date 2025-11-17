@@ -1,0 +1,26 @@
+# Arquivo de dependências para pip
+
+# NLP e IA
+huggingface-hub
+sentence-transformers
+torch
+transformers
+
+# Interfaces
+flet
+Flask
+
+# Áudio
+pyttsx3
+SpeechRecognition
+PyAudio
+
+# Busca na Web
+ddgs
+
+# Utilitários
+python-dotenv
+requests
+
+# Testes
+pytest

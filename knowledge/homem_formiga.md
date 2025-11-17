@@ -1,0 +1,1 @@
+Homem-Formiga (Hank Pym / Scott Lang): O título de Homem-Formiga foi usado por vários personagens, principalmente o cientista Hank Pym, que descobriu as "Partículas Pym", e o ladrão reformado Scott Lang. O traje permite que o usuário encolha a um tamanho subatômico ou cresça a proporções gigantescas, mantendo sua força normal. Também permite a comunicação com insetos.

@@ -1,0 +1,1 @@
+Mulher Invisível (Sue Storm): Membro fundadora do Quarteto Fantástico. A radiação cósmica lhe deu o poder de se tornar invisível e de projetar campos de força psiônicos incrivelmente duráveis. Ela é uma das heroínas mais poderosas do universo Marvel, capaz de criar construtos e escudos de energia. É a esposa de Reed Richards.

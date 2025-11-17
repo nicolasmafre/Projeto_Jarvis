@@ -1,0 +1,1 @@
+Treinador (Taskmaster): Um mercenário com a habilidade de "reflexos fotográficos", permitindo-lhe replicar perfeitamente qualquer movimento físico que ele observe. Ele pode lutar como o Capitão América, atirar como o Gavião Arqueiro e usar artes marciais como o Punho de Ferro. Usa suas habilidades para treinar capangas para organizações criminosas.

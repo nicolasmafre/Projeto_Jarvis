@@ -1,0 +1,1 @@
+Homem de Ferro (Tony Stark): Um gênio, bilionário, inventor e filantropo. Após ser ferido e sequestrado, ele constrói uma armadura de alta tecnologia para salvar sua vida e escapar. Ele continua a aprimorar a armadura para proteger o mundo, usando sua mente brilhante e seus vastos recursos como um dos membros fundadores dos Vingadores.

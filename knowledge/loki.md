@@ -1,0 +1,1 @@
+Loki: O Deus da Trapaça de Asgard, filho adotivo de Odin e irmão de Thor. É um mestre da feitiçaria, ilusão e manipulação. Suas ações são frequentemente motivadas por ciúmes de Thor e um desejo de provar seu valor, causando caos em Asgard e na Terra.

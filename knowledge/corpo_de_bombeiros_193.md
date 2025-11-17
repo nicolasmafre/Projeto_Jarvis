@@ -1,0 +1,1 @@
+193 - Corpo de Bombeiros: Para incêndios, resgates, acidentes com animais peçonhentos, vazamentos de gás, e outras situações que exijam salvamento.

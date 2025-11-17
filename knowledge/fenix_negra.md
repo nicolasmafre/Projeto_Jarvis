@@ -1,0 +1,1 @@
+Fênix Negra: A manifestação sombria e corrompida da Força Fênix, uma entidade cósmica de poder imensurável. Quando possui um hospedeiro, como Jean Grey, seus poderes telepáticos e telecinéticos são amplificados a um nível divino, mas ela é consumida por emoções destrutivas, tornando-se uma ameaça para o universo inteiro.

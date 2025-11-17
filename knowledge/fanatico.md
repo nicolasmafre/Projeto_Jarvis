@@ -1,0 +1,1 @@
+Fanático (Cain Marko): Meio-irmão de Charles Xavier, ele não é um mutante. Seus poderes vêm da Gema de Cyttorak, uma entidade mística que lhe concede força e durabilidade sobre-humanas, além de um campo de força que o torna uma força imparável quando está em movimento. Uma vez que ele começa a correr, nada pode pará-lo.

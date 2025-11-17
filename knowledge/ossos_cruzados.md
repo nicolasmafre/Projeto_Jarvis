@@ -1,0 +1,1 @@
+Ossos Cruzados (Brock Rumlow): Um mercenário brutal e um dos principais agentes do Caveira Vermelha. Não possui superpoderes, mas é um combatente corpo a corpo excepcional, especialista em táticas militares e armas de fogo. É conhecido por sua lealdade fanática à HIDRA e seu ódio pelo Capitão América.

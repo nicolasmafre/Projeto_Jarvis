@@ -1,0 +1,1 @@
+O Líder (Samuel Sterns): Um homem que trabalhava como faxineiro em uma instalação de pesquisa química e foi exposto a radiação gama, assim como o Hulk. Em vez de força física, a radiação aumentou sua inteligência a um nível sobre-humano, mas também sua vaidade e ambição. Ele busca dominar o mundo usando seu intelecto e considera o Hulk seu maior rival.

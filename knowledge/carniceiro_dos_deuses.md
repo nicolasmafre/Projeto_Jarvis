@@ -1,0 +1,1 @@
+Carniceiro dos Deuses (Gorr): Um alienígena de um planeta desolado que, após sua família morrer apesar de suas preces, concluiu que os deuses não existiam ou não se importavam. Ao encontrar a Necro-Espada, uma arma simbiótica ancestral, ele ganha poder para matar deuses e inicia uma cruzada de milênios para erradicar todas as divindades do universo.

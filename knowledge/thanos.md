@@ -1,0 +1,1 @@
+Thanos: Um Titã do planeta Titã, obcecado pela Morte e pelo conceito de equilíbrio cósmico. Busca as Joias do Infinito para obter onipotência e eliminar metade da vida no universo, acreditando que isso trará prosperidade. É um dos seres mais poderosos e temidos da galáxia.

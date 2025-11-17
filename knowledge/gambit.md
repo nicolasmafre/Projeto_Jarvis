@@ -1,0 +1,1 @@
+Gambit (Remy LeBeau): Um mutante com a habilidade de carregar objetos inanimados com energia cinética, fazendo-os explodir. Ele geralmente usa cartas de baralho como sua arma principal. Criado em Nova Orleans como membro do Clã dos Ladrões, ele é charmoso, astuto e um mestre do combate corpo a corpo com seu bastão. Tem um relacionamento complexo com a Vampira.

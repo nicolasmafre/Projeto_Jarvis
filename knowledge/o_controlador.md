@@ -1,0 +1,1 @@
+O Controlador (Basil Sandhurst): Um cientista que, após um acidente de laboratório, ficou aleijado. Seu irmão criou um exoesqueleto para ele, alimentado pela energia mental de outras pessoas. Usando "discos de controle", ele pode escravizar mentalmente grandes populações, absorvendo sua força de vontade para alimentar sua armadura e seus poderes.

@@ -1,0 +1,1 @@
+Jean Grey: Uma mutante de nível Ômega e um dos cinco membros originais dos X-Men. Possui poderes telepáticos e telecinéticos imensuráveis. Ela também é a hospedeira preferida da Força Fênix, uma entidade cósmica de poder destrutivo e criativo. Sua vida é marcada por ciclos de morte e renascimento.

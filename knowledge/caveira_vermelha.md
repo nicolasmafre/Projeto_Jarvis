@@ -1,0 +1,1 @@
+Caveira Vermelha (Johann Shmidt): O maior inimigo do Capitão América. Foi o chefe de operações terroristas da Alemanha Nazista e fundador da HIDRA. Representa tudo o que o Capitão América luta contra. É um estrategista brilhante e um símbolo do mal e da tirania.

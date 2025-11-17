@@ -1,0 +1,1 @@
+Tempestade (Ororo Munroe): Uma mutante de nível Ômega com a habilidade de controlar o clima. Ela pode criar tempestades, furacões, nevascas e convocar raios. Descendente de uma linhagem de sacerdotisas africanas, ela foi adorada como uma deusa antes de se juntar aos X-Men, onde se tornou uma de suas líderes mais importantes e respeitadas.

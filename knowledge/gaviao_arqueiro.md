@@ -1,0 +1,1 @@
+Gavião Arqueiro (Clint Barton): Um mestre arqueiro com uma precisão quase sobre-humana. Embora não tenha superpoderes, ele é um atleta no auge da condição humana e um combatente habilidoso. Usa um arsenal de flechas com pontas especiais (explosivas, ácidas, de rede, etc.). É a prova de que um humano comum pode lutar ao lado de deuses e super-soldados.

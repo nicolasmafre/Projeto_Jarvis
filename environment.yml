@@ -1,0 +1,41 @@
+name: Projeto_Jarvis
+
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  # --- Versão do Python ---
+  - python=3.10
+
+  # --- Pacotes Conda para performance e compatibilidade ---
+  - pytorch
+  - cpuonly # Remova esta linha se você tem uma GPU NVIDIA com CUDA configurado
+  - pyaudio
+
+  # --- Pacotes Pip para o resto das dependências ---
+  - pip
+  - pip:
+    # NLP e IA
+    - huggingface-hub
+    - sentence-transformers
+    - transformers
+
+    # Interfaces
+    - flet
+    - flask
+
+    # Áudio
+    - pyttsx3
+    - speechrecognition
+
+    # Busca na Web
+    - ddgs
+
+    # Utilitários
+    - python-dotenv
+    - requests
+
+    # Testes
+    - pytest

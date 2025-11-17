@@ -1,0 +1,1 @@
+Visão (Vision): Um "sintozoide" criado pelo vilão Ultron para destruir os Vingadores. Seu corpo é uma mistura de Vibranium sintético e tecido humano, com a Joia da Mente em sua testa. Ele se rebelou contra seu criador e se juntou aos Vingadores. Possui superforça, a capacidade de alterar sua densidade (podendo voar ou ficar intangível) e disparar rajadas de energia.

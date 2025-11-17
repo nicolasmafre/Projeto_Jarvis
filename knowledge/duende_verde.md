@@ -1,0 +1,1 @@
+Duende Verde (Norman Osborn): Um industrialista brilhante que, após um experimento com o "Soro do Duende", ganhou força sobre-humana, mas enlouqueceu. Usa um planador e um arsenal de bombas em formato de abóbora. É o arqui-inimigo do Homem-Aranha, responsável por muitas das maiores tragédias em sua vida.

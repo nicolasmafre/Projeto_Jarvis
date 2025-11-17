@@ -1,0 +1,1 @@
+Demolidor (Matt Murdock): Um advogado que ficou cego em um acidente na infância que também amplificou seus outros sentidos a um nível sobre-humano. Ele usa sua audição, olfato, tato e um "sentido de radar" para "ver" o mundo de uma forma única. À noite, ele se torna o vigilante de Hell's Kitchen, usando suas habilidades acrobáticas e de artes marciais para combater o crime.

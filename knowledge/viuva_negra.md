@@ -1,0 +1,1 @@
+Viúva Negra (Natasha Romanoff): Uma das maiores espiãs e assassinas do mundo. Treinada desde a infância no programa soviético "Sala Vermelha", ela é uma mestre em artes marciais, táticas de espionagem e armas. Desertou para se juntar à S.H.I.E.L.D. e se tornou um membro fundamental dos Vingadores, usando suas habilidades para redimir seu passado.
