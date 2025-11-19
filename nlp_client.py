@@ -18,12 +18,8 @@ class NlpClient(ABC):
     @abstractmethod
     def decide_on_tool(self, prompt, conversation_history): pass
 
-    # --- O MÉTODO FALTANTE ESTÁ AQUI ---
     @staticmethod
     def create():
-        """
-        Cria e retorna uma instância do cliente de NLP apropriado.
-        """
         provider = os.getenv("NLP_PROVIDER", "huggingface").lower()
         if provider == "huggingface":
             return HuggingFaceHubClient()
@@ -31,22 +27,18 @@ class NlpClient(ABC):
             return ReplicateClient()
         else:
             raise ValueError(f"Provedor de NLP desconhecido: {provider}")
-    # ------------------------------------
 
 class HuggingFaceHubClient(NlpClient):
     """Cliente de NLP para a API de Inferência do Hugging Face."""
     def __init__(self):
-        """Inicializa o cliente, carregando o token e os nomes dos modelos."""
         token = os.getenv("HF_TOKEN") or os.getenv("HUGGINGFACE_API_KEY")
         if not token: raise ValueError("A chave de API do Hugging Face não foi encontrada.")
         
         self.general_model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
         self.educational_model_name = "microsoft/Phi-3-mini-4k-instruct"
-        
         self.client = InferenceClient(token=token)
 
     def _call_llm(self, model_name, messages, max_tokens, temperature):
-        """Faz a chamada para a API, especificando o modelo a ser usado, e trata erros."""
         try:
             response_stream = self.client.chat.completions.create(
                 model=model_name, messages=messages, max_tokens=max_tokens, temperature=temperature, stream=True
@@ -62,41 +54,61 @@ class HuggingFaceHubClient(NlpClient):
 
     def decide_on_tool(self, prompt, conversation_history):
         """Decide qual ferramenta ou meta-comando usar."""
-        # ... (código do decide_on_tool) ...
-        pass
-        
+        # --- PROMPT DE DECISÃO REFORÇADO ---
+        system_prompt = (
+            "Sua tarefa é analisar a pergunta do usuário e classificar a intenção em uma categoria. Responda apenas com um JSON.\n"
+            "Categorias:\n"
+            "- 'start_task': Para iniciar tarefas longas (ex: 'me ensine', 'crie um plano').\n"
+            "- 'pause_task': Para parar ou pausar a tarefa atual.\n"
+            "- 'resume_task': Para continuar uma tarefa anterior.\n"
+            "- 'educational_query': Para perguntas sobre conceitos (ex: 'o que é', 'explique').\n"
+            "- 'web_search': Para QUALQUER pergunta que precise de informações do mundo real ou em tempo real. Use para previsão do tempo, notícias, resultados esportivos, fatos sobre pessoas, lugares, empresas, etc.\n"
+            "- 'none': Para conversas gerais, saudações e opiniões.\n"
+            "Exemplos:\n"
+            'Pergunta: "Qual a previsão do tempo para hoje?" -> {"tool": "web_search", "query": "previsão do tempo para hoje"}\n'
+            'Pergunta: "Quem é o presidente da França?" -> {"tool": "web_search", "query": "presidente da França"}\n'
+            'Pergunta: "Me explique a teoria da relatividade" -> {"tool": "educational_query"}\n'
+            'Pergunta: "Olá, tudo bem?" -> {"tool": "none"}\n'
+            'Responda APENAS com o JSON.'
+        )
+        messages = [{"role": "system", "content": system_prompt}]
+        if conversation_history: messages.extend(conversation_history[-2:])
+        messages.append({"role": "user", "content": f"Pergunta: \"{prompt}\""})
+
+        try:
+            response = self._call_llm(self.general_model_name, messages, max_tokens=150, temperature=0.0)
+            json_str = response[response.find('{'):response.rfind('}')+1]
+            if not json_str: return {"tool": "none"}
+            return json.loads(json_str)
+        except Exception as e:
+            print(f"ERRO [decide_on_tool]: Falha ao decidir a ferramenta: {e}")
+            return {"tool": "none"}
+
     def generate(self, prompt, max_tokens=1024, temperature=0.7, conversation_history=None):
-        """Gera uma resposta de conversação geral."""
         system_prompt = "Você é Jarvis, um assistente de IA prestativo e cortês..."
         messages = [{"role": "system", "content": system_prompt}]
         if conversation_history: messages.extend(conversation_history)
         messages.append({"role": "user", "content": prompt})
-        
         try:
             return self._call_llm(self.general_model_name, messages, max_tokens, temperature)
         except Exception as e:
             return f"Desculpe, ocorreu um erro ao processar sua solicitação. Detalhes: {e}"
 
     def generate_educational_answer(self, prompt):
-        """Gera uma resposta educacional usando o modelo Phi-3."""
         print(f"[NLP Client] Usando o modelo educacional ({self.educational_model_name}) para a pergunta.")
         system_prompt = "Você é um tutor especialista..."
         messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": prompt}]
-        
         try:
             return self._call_llm(self.educational_model_name, messages, max_tokens=1024, temperature=0.5)
         except Exception as e:
             return f"Desculpe, ocorreu um erro ao processar sua solicitação. Detalhes: {e}"
 
     def extract_facts(self, text):
-        """Extrai fatos importantes de um texto."""
-        system_prompt = "Você é um especialista em extrair informações..."
+        system_prompt = "Você é um especialista em extrair informações importantes sobre um usuário..."
         messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": f"Texto: '{text}'"}]
-        
         try:
             fact = self._call_llm(self.general_model_name, messages, max_tokens=50, temperature=0.0)
-            if "N/A" in fact or len(fact.strip()) < 8:
-                return None
+            if "N/A" in fact or len(fact.strip()) < 8: return None
             return fact.strip()
         except Exception:
             return None

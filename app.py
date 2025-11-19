@@ -11,14 +11,12 @@ from jarvis import Jarvis
 from stt import STT
 from tts import TTS
 
-# --- Força a codificação UTF-8 para stdin/stdout para evitar UnicodeDecodeError ---
+# --- Força a codificação UTF-8 para stdin/stdout ---
 try:
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
     sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
 except (TypeError, ValueError):
-    # Ocorre em alguns ambientes onde o buffer não está disponível (ex: IDEs)
     print("Aviso: Não foi possível reconfigurar a codificação de stdin/stdout.")
-# --------------------------------------------------------------------------------
 
 # --- Context Manager Avançado para suprimir erros do ALSA ---
 ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
@@ -43,10 +41,11 @@ def no_alsa_err():
     except (OSError, AttributeError):
         yield
 
-
+# --- Inicialização da Aplicação ---
 app = Flask(__name__)
 jarvis = Jarvis()
 
+# --- Rotas da Interface Web (Flask) ---
 @app.route("/", methods=["GET"])
 def index():
     """Renderiza a página principal do chat web."""
@@ -75,6 +74,7 @@ def voice():
     """Endpoint futuro para processamento de áudio de voz."""
     return jsonify({"error": "Endpoint de voz ainda não implementado"}), 501
 
+# --- Funções da Interface de Linha de Comando (CLI) ---
 def cli_interface():
     """Inicia a interface de linha de comando com um menu de seleção de modo."""
     print("=================================")
@@ -164,12 +164,13 @@ def run_voice_cli():
         if 'tts_instance' in locals():
             tts_instance.speak(exit_message)
 
+# --- Ponto de Entrada Principal ---
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Jarvis - Assistente de Linguagem Natural")
     parser.add_argument("--web", action="store_true", help="Iniciar a interface web com Flask")
     args = parser.parse_args()
 
     if args.web:
-        app.run(debug=True, port=5000)
+        app.run(host='0.0.0.0', port=5000, debug=True)
     else:
         cli_interface()

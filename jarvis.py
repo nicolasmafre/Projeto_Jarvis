@@ -41,20 +41,26 @@ class Jarvis:
         """
         self._learn_from_interaction(prompt)
 
-        context_for_decision = self.task_manager.get_active_task_state() or self.conversation_history
-        tool_decision = self.nlp_client.decide_on_tool(prompt, context_for_decision)
+        # --- CONSTRUÇÃO DE CONTEXTO COMPLETO ---
+        relevant_facts = self.memory.get_relevant_facts(prompt)
+        memory_context = f"Fatos conhecidos sobre o usuário: {', '.join(relevant_facts)}." if relevant_facts else ""
         
-        if not isinstance(tool_decision, dict):
-            tool_decision = {"tool": "none"}
-            
-        chosen_tool = tool_decision.get("tool", "none")
+        active_task = self.task_manager.get_active_task_state()
+        base_history = active_task.get("historico", []) if active_task else self.conversation_history
+        
+        full_context_history = base_history + ([{"role": "system", "content": memory_context}] if memory_context else [])
+
+        # Etapa 1: Decide a ferramenta/ação a ser tomada
+        tool_decision = self.nlp_client.decide_on_tool(prompt, full_context_history)
+        chosen_tool = tool_decision.get("tool", "none") if isinstance(tool_decision, dict) else "none"
 
         response = ""
 
+        # Etapa 2: Executa a lógica com base na ferramenta escolhida
         if chosen_tool == "start_task":
-            task_name = tool_decision.get("task_name", prompt)
+            task_name = tool_decision.get("task_name", "Tarefa sem nome")
             self.task_manager.start_task(task_name, prompt)
-            response = f"Ok, vamos começar a tarefa: '{task_name}'. Qual é o primeiro passo ou a primeira pergunta?"
+            response = f"Ok, vamos começar a tarefa: '{task_name}'. Qual é o primeiro passo?"
             self.task_manager.update_task_history(prompt, response)
         
         elif chosen_tool == "pause_task":
@@ -68,13 +74,12 @@ class Jarvis:
                 response = f"Ok, retomando a tarefa '{latest_task}'. Onde paramos?"
             else:
                 response = "Não há nenhuma tarefa para retomar."
-        
+
         else:
-            active_task = self.task_manager.get_active_task_state()
+            # --- FLUXO PADRÃO ---
             if active_task:
                 print(f"[Jarvis] Continuando a tarefa ativa: '{self.task_manager.active_task}'")
-                task_history = active_task.get("historico", [])
-                response = self.nlp_client.generate(prompt, conversation_history=task_history)
+                response = self.nlp_client.generate(prompt, conversation_history=base_history)
                 self.task_manager.update_task_history(prompt, response)
             else:
                 rag_answer = self.rag.answer_with_rag(prompt)
@@ -92,16 +97,11 @@ class Jarvis:
                         response = self.nlp_client.generate(prompt=final_prompt, conversation_history=self.conversation_history)
                     else:
                         sentiment = self.sentiment_analyzer.analyze(prompt)
-                        relevant_facts = self.memory.get_relevant_facts(prompt)
-                        sentiment_context = f"O sentimento do usuário parece ser {sentiment}."
-                        memory_context = ""
-                        if relevant_facts:
-                            memory_context = "\n\nFatos relevantes da memória: " + ", ".join(relevant_facts)
-                        
-                        final_prompt = f"Contexto: {sentiment_context}{memory_context}\n\nPergunta: {prompt}"
+                        final_prompt = f"Contexto: O sentimento do usuário é {sentiment}. {memory_context}\n\nPergunta: {prompt}"
                         response = self.nlp_client.generate(prompt=final_prompt, conversation_history=self.conversation_history)
 
-        if not self.task_manager.get_active_task_state():
+        # Etapa Final: Atualiza o histórico geral e retorna a resposta
+        if not active_task:
             self.conversation_history.append({"role": "user", "content": prompt})
             self.conversation_history.append({"role": "assistant", "content": response})
         
